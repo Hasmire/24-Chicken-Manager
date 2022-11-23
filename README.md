@@ -1,4 +1,4 @@
-# ICS2608 - Course Project
+# ICS2607 - Course Project
 *Description goes here*
 
 ## Installation
