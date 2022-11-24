@@ -15,8 +15,11 @@ php artisan serve
 ```
 6. Open http://localhost:8000 in your browser
 
+## For Frontend
+Put the files in the /resources/ directory
+
 ## Blade Template
-Click [here](https://laravel.com/docs/9.x/blade "here") for the documentation of the PHP templating engines to be used.
+Click [here](https://laravel.com/docs/9.x/blade "here") for the documentation of the PHP templating engine to be used.
 
 ## Learning Laravel
 
