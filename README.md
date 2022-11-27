@@ -1,4 +1,4 @@
-# ICS2607 - Course Project
+# 25 Chicken
 *Description goes here*
 
 ## Installation
