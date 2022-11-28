@@ -7,6 +7,8 @@
 3. Run the following code to install other dependencies:
 ```
 composer install
+php artisan key:generate
+cp .env.example .env
 ```
 4. Change database configuration in the .env file
 5. Run the following code to initialize the development server:
