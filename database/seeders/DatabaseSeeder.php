@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Food;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +20,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //Create fake Users
+        User::factory(5)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        //Create initial food values
+        DB::table('foods')->insert([
+            'name' => 'Original',
+            'description' => fake()->sentence(),
+            'price' => 125,
+            'thumbnail'=> fake()->sentence()
+        ]);
+        DB::table('foods')->insert([
+            'name' => 'Jack Daniels',
+            'description' => fake()->sentence(),
+            'price' => 125,
+            'thumbnail'=> fake()->sentence()
+        ]);
+        DB::table('foods')->insert([
+            'name' => 'Garlic',
+            'description' => fake()->sentence(),
+            'price' => 125,
+            'thumbnail'=> fake()->sentence()
+        ]);
+        DB::table('foods')->insert([
+            'name' => 'Yangnyeom',
+            'description' => fake()->sentence(),
+            'price' => 125,
+            'thumbnail'=> fake()->sentence()
+        ]);     
+           
     }
 }
