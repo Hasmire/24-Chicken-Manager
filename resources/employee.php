@@ -11,6 +11,9 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/template-styles.css">
+  <style>
+    <?php include 'css/header-footer-styles.css'; ?>
+  </style>
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Open+Sans:wght@700&display=swap"
