@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Promo extends Model
 {
     use HasFactory;
+
+    public function order() {
+        return $this->belongsToMany(User::class);
+    }
 }
