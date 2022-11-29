@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
-
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->boolean('ismanager')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->cascadeOnDelete();
+            $table->foreignId('order_type_id');
+            $table->foreignId('quantity_id')->cascadeOnDelete();
+            $table->foreignId('promo_id')->nullable();
+            $table->double('amount', null, '2');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('orders');
     }
 };
