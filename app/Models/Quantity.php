@@ -9,19 +9,13 @@ class Quantity extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
-        return $this->hasOne(User::class);
-    }
-
     public function food()
     {
-        return $this->hasMany(Food::class);
+        return $this->hasOne(Food::class);
     }
 
     public function order()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsTo(Order::class);
     }
-
 }
