@@ -46,7 +46,7 @@
         <a href=""><span id="log">Logout</span></a>
         <a href="update.php">Account</a>
         <a href="menu.php">Menu</a>
-        <a href="index.php">Home</a>
+        <a href="landing.php">Home</a>
       </div>
     </div>
     </div>
