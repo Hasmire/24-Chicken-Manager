@@ -18,10 +18,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->integer('price');
+            $table->double('amount', null, '2');
             $table->string('thumbnail')->nullable();
             $table->timestamps();
-            
+
         });
     }
 

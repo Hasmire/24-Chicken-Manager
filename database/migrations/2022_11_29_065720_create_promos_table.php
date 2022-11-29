@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $$table->double('amount', null, '2');
+            $table->double('amount', null, '2');
             $table->timestamps();
         });
     }
