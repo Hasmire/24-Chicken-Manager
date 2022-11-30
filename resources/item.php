@@ -31,17 +31,36 @@
   <?php include 'header-footer/header-end-user.php';?>
 
   <!-- CONTENT -->
-  <img src="images/dummy.png" id="product-image" width="200">
-  <h1 id="flavor">Flavor</h1>
-  <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque augue vitae lacus cursus, sit amet maximus erat fermentum.</p>
-  <h3 id="price">₱ 000.00</h3>
+  <div class="row">
+      <div class="column1">
+        <!-- BACKEND: change image depending on the item -->
+        <img src="images/24chicken-item-sample.jpg" id="product-image">
+      </div> 
 
-  <form action="menu.php">
-    <label for="quantity">Quantity</label><br>
-    <input type="number" name="quantity" placeholder="0"  value="0" required><br>
+      <div class="column2">
+        <div class="vertical-center">
+          <!-- BACKEND: change details depending on the item -->
+          <h1 id="flavor">Flavor</h1>
+          <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque augue vitae lacus cursus, sit amet maximus erat fermentum.</p>
+          <h3 id="price">₱ 000.00</h3>
 
-    <input type="submit" name="add" value="Add">
-  </form>
+          <hr id="divider">
+          <br>
+
+          <div class="quantity-container">
+            <div class="quantity-content">
+              <form action="menu.php">
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" placeholder="0"  min="0" value="0" required>
+
+                <input type="submit" name="add" value="Add">
+              </form>
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+  </div>  
+
   </div>
   
   <!-- FOOTER -->
