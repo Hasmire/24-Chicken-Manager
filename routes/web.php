@@ -38,6 +38,7 @@ Route::get('login', function () {
     return view('login');
 })->name('login')->middleware('guest');
 
+
 //Edit User Routes
 // Route::get('update', [UserController::class, 'edit'])->middleware('auth');
 // Route::post('update', [UserController::class, 'update'])->middleware('auth');
