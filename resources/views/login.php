@@ -10,9 +10,9 @@
   <link rel="icon" href="images/24chicken-icon.png" type="image/x-icon">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/login-styles.css">
+  <link rel="stylesheet" href="../css/login-styles.css">
   <style>
-    <?php include 'css/header-footer-styles.css'; ?>
+    <?php include '../css/header-footer-styles.css'; ?>
   </style>
 
   <!-- FONTS -->
@@ -27,9 +27,9 @@
 <body>
 <div id="page-container">
   <div id="content-wrap">
-    
+
   <!-- NAVBAR -->
-  <?php include 'header-footer/header-public.php';?>
+  <?php include '../header-footer/header-public.php';?>
 
   <!-- CONTENT -->
   <div class="login">
@@ -52,7 +52,7 @@
 
   </div>
   <!-- FOOTER -->
-  <?php include 'header-footer/footer-public.php';?>
+  <?php include '../header-footer/footer-public.php';?>
   </div>
 </body>
 
