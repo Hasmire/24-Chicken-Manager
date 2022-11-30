@@ -47,10 +47,12 @@ class UserController extends Controller
         ]);
 
         // Create user using inputs
-        User::create($request->all());      
+        $user = User::create($request->all());      
 
-        //Redirect back to login if successful
-        return redirect('/')->with('success', 'Registered Successfully');
+        auth()->login($user);
+        
+        //Redirect to landing page if successful
+        return redirect('landing')->with('success', 'Successfully Registered');
     }
 
     /**
