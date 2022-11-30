@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('quantities', function (Blueprint $table) {
 
-            $table->id();
+            $table->unsignedBigInteger('id');
             $table->foreignId('order_id')->cascadeOnDelete();
             $table->foreignId('food_id')->cascadeOnDelete();
+            $table->primary(['order_id', 'food_id'], 'id');
             $table->integer('quantity');
         });
     }

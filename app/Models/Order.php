@@ -13,11 +13,11 @@ class Order extends Model
         return $this->hasOne(User::class);
     }
 
-    public function quantity() {
-        return $this->hasOne(Quantity::class);
-    }
-
     public function order_type() {
         return $this->hasOne(Order_type::class);
+    }
+
+    public function promo() {
+        return $this->hasOne(Promo::class);
     }
 }

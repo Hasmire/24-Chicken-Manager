@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->cascadeOnDelete();
             $table->foreignId('order_type_id');
-            $table->foreignId('quantity_id')->cascadeOnDelete();
             $table->foreignId('promo_id')->nullable();
             $table->double('amount', null, '2');
             $table->string('status')->default('pending');
