@@ -12,6 +12,8 @@
     <!-- CSS -->
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/header-footer-styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Open+Sans:wght@700&display=swap"

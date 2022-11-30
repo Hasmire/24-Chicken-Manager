@@ -21,7 +21,7 @@
                 <input type="submit" name="login" value="Login">
             </form>
 
-            <p>Don't have an account? <a href="signup.blade.php">Sign Up</a></p>
+            <p>Don't have an account? <a href="{{ route('users.create') }}">Sign Up</a></p>
         </div>
     </div>
 </x-layout-public>
