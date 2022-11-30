@@ -34,39 +34,57 @@
   <div class="header">
     <div class="content-margin">
       <h1>Update Customer Information</h1>
-      <p>Please enter the required information below and confirm your order.</p>
+      <p>Please enter the required information below and save your profile.</p>
     </div>
   </div>
 
-  <form action="POST" action="">
-    <h3 id="heading">Customer Information</h3>
+  <!-- CONTENT - Sign up Form-->
+  <div class="row">
+      <div class="column1">
+        <form method="POST" action="update.php"> <!-- BACKEND: change values depending on user -->
+          <h3 id="heading">Customer Information</h3>
 
-    <label for="fname">First Name</label><br>
-    <input type="text" name="fname" value="Juan" required><br><br>
+          <div class="form-half">
+            <div class="form-left">
+              <label for="fname">First Name</label><br>
+              <input type="text" name="fname" value="Juan" required><br>
+            </div> 
+            <div class="form-right">
+              <label for="lname">Last Name</label><br>
+              <input type="text" name="lname" value="dela Cruz" required><br>
+            </div> 
+          </div>  
+          <br>
 
-    <label for="lname">Last Name</label><br>
-    <input type="text" name="fname" value="dela Cruz" required><br><br>
+          <label for="address">Address</label><br>
+          <input type="text" name="address" value="24 Chicken St., Brgy. Manok, Q.C." required><br>
+          <br>
 
-    <label for="address">Address</label><br>
-    <input type="text" name="address" value="24 Chicken St., Brgy. Manok, Q.C." required><br><br>
+          <div class="form-half">
+            <div class="form-left">
+              <label for="email">Email Address</label><br>
+              <input type="email" name="email" value="juandc@gmail.com" required><br>
+            </div> 
+            <div class="form-right">
+              <label for="password">Password</label><br>
+              <input type="password" name="password" value="password" required><br>
+            </div> 
+          </div> 
 
-    <label for="email">Email Address</label><br>
-    <input type="email" name="email" value="juandc@gmail.com" required><br><br>
+          <br><br>
+          <input type="submit" name="save" value="Save">
+        </form>
+      </div> 
 
-    <label for="password">Password</label><br>
-    <input type="password" name="password" value="password" required><br><br>
+      <div class="column-mid"></div> <!-- column separator -->
+      <div class="column2"></div> <!-- branch image -->
+  </div> 
 
-    <input type="submit" name="save" value="Save">
-  </form>
-
-  <br><br>
-  <img src="images/dummy.png" id="branch" width="200">
-  
-  </div>
+  </div> 
   
   <!-- FOOTER -->
   <?php include 'header-footer/footer-private.php';?>
-  </div>
+  </div> 
 </body>
 
 </html>
