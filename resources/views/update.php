@@ -7,12 +7,12 @@
 
   <!-- TITLE -->
   <title>Update Customer Information</title>
-  <link rel="icon" href="images/24chicken-icon.png" type="image/x-icon">
+  <link rel="icon" href="../images/24chicken-icon.png" type="image/x-icon">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/update-styles.css">
+  <link rel="stylesheet" href="../css/update-styles.css">
   <style>
-    <?php include 'css/header-footer-styles.css'; ?>
+    <?php include '../css/header-footer-styles.css'; ?>
   </style>
 
   <!-- FONTS -->
@@ -28,7 +28,7 @@
   <div id="content-wrap">
     
   <!-- NAVBAR -->
-  <?php include 'header-footer/header-end-user.php';?>
+  <?php include '../header-footer/header-end-user.php';?>
 
   <!-- CONTENT -->
   <div class="header">
@@ -83,7 +83,7 @@
   </div> 
   
   <!-- FOOTER -->
-  <?php include 'header-footer/footer-private.php';?>
+  <?php include '../header-footer/footer-private.php';?>
   </div> 
 </body>
 
