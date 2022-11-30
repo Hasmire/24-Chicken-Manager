@@ -10,7 +10,7 @@
     <div class="row">
         <div class="column1">
             <!-- BACKEND: change image depending on the item -->
-            <img src="{{ asset('images/placeholder.jpg') }}" id="product-image">
+            <img src="{{ asset($food->thumbnail) }}" id="product-image">
         </div>
 
         <div class="column2">

@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Original',
             'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jack Daniels',
             'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Garlic',
             'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Yangnyeom',
             'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
