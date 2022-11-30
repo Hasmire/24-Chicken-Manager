@@ -25,12 +25,13 @@
 
                 <div class="quantity-container">
                     <div class="quantity-content">
-                        <form action="menu.php">
+                        <form method="POST" action="/add">
+                            @csrf
                             <label for="quantity">Quantity</label>
                             <input type="number" name="quantity" placeholder="0" min="0" value="0"
                                 required>
-
-                            <input type="submit" name="add" value="Add">
+                            <input type="hidden" name="item" value="{{ $food }}">
+                            <input type="submit" name="add" value="add">
                         </form>
                     </div>
                 </div>

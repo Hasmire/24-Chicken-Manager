@@ -15,7 +15,7 @@ class FoodController extends Controller
         ]);
     }
 
-    public function item(Food $food)
+    public function show(Food $food)
     {
         return view ('end-user.item', [
             'food' => $food
