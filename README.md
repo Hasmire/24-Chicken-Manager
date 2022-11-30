@@ -20,7 +20,7 @@ php artisan serve
 ## For Frontend
 Put the files in the /resources/ directory.
 
-If you are using blade.php, put the blade.php files in the /resources/views/ directory. Also, put the css, js, images, and other public access files in the /public/ directory.
+If you are using **blade templates**, put the blade.php files in the /resources/views/ directory. Also, put the css, js, images, and other public access files in the /public/ directory.
 
 ## Blade Template
 Click [here](https://laravel.com/docs/9.x/blade "here") for the documentation of the PHP templating engine to be used.
