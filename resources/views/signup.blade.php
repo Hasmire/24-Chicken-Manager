@@ -52,15 +52,8 @@
                 <br><br>
                 <input type="submit" name="signup" value="Sign Up">
 
-                @if ($errors->any())
-                    <div class="" style="color:red;text-align:center;">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                {{-- Displays an error when inputs are invalid --}}
+                <x-error-message/> 
                 
             </form>
         </div>
