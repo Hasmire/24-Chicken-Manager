@@ -21,7 +21,6 @@
 
         <div class="nav-links">
             <a href=""><span id="log">Logout</span></a>
-            <a href="attendance.php">Attendance</a>
             <a href="order.php">Orders</a>
         </div>
     </div>
