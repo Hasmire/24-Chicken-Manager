@@ -28,7 +28,7 @@
   <div id="content-wrap">
     
   <!-- NAVBAR -->
-  <?php include 'header-footer/header-end-user.php';?>
+  <?php include 'header-footer/header-public.php';?>
 
   <!-- CONTENT -->
   <div class="header">
@@ -38,34 +38,53 @@
     </div>
   </div>
 
-  <form action="POST" action="">
-    <h3 id="heading">Customer Information</h3>
+  <!-- CONTENT - Sign up Form-->
+  <div class="row">
+      <div class="column1">
+        <form method="POST" action=""> <!-- action depending on isEmployee -->
+          <h3 id="heading">Customer Information</h3>
 
-    <label for="fname">First Name</label><br>
-    <input type="text" name="fname" placeholder="First Name" required><br><br>
+          <div class="form-half">
+            <div class="form-left">
+              <label for="fname">First Name</label><br>
+              <input type="text" name="fname" placeholder="First Name" required>
+            </div> 
+            <div class="form-right">
+              <label for="lname">Last Name</label><br>
+              <input type="text" name="lname" placeholder="Last Name" required><br>
+            </div> 
+          </div>  
+          <br>
 
-    <label for="lname">Last Name</label><br>
-    <input type="text" name="fname" placeholder="Last Name" required><br><br>
+          <label for="address">Address</label><br>
+          <input type="text" name="address" placeholder="Enter your address" required><br>
+          <br>
 
-    <label for="address">Address</label><br>
-    <input type="text" name="address" placeholder="Enter your address" required><br><br>
+          <div class="form-half">
+            <div class="form-left">
+              <label for="email">Email Address</label><br>
+              <input type="email" name="email" placeholder="Enter your email" required><br>
+            </div> 
+            <div class="form-right">
+              <label for="password">Password</label><br>
+              <input type="password" name="password" placeholder="Enter your password" required><br>
+            </div> 
+          </div> 
 
-    <label for="email">Email Address</label><br>
-    <input type="email" name="email" placeholder="Enter your email" required><br><br>
+          <br><br>
+          <input type="submit" name="signup" value="Sign Up">
+        </form>
+      </div> 
 
-    <label for="password">Password</label><br>
-    <input type="password" name="password" placeholder="Enter your password" required><br><br>
+      <div class="column-mid"></div> <!-- column separator -->
+      <div class="column2"></div> <!-- branch image -->
+  </div> 
 
-    <input type="submit" name="signup" value="Sign Up">
-  </form>
-
-  <br><br>
-  <img src="images/dummy.png" id="branch" width="200">
-  </div>
+  </div> 
   
   <!-- FOOTER -->
-  <?php include 'header-footer/footer-private.php';?>
-  </div>
+  <?php include 'header-footer/footer-public.php';?>
+  </div> 
 </body>
 
 </html>
