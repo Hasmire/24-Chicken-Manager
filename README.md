@@ -10,6 +10,7 @@
 composer install
 php artisan key:generate
 copy .env.example .env
+php artisan migrate --seed
 ```
 5. Run the following code to initialize the development server:
 ```
