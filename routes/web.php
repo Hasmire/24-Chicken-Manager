@@ -18,7 +18,7 @@ use App\Http\Controllers\SessionsController;
 //index route
 Route::get('/', function () {
     return view('login');
-});
+})->middleware('guest');
 
 //End user landing page
 Route::get('landing', function(){
@@ -36,7 +36,7 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 Route::get('login', function () {
     return view('login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 //Edit User Routes
 // Route::get('update', [UserController::class, 'edit'])->middleware('auth');
