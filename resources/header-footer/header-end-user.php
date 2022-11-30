@@ -28,7 +28,7 @@
       
       <div class="nav-header">
         <div class="nav-title">
-          <img src="images/24chicken-logo.png" id="logo">
+          <img src="../images/24chicken-logo.png" id="logo">
         </div>
       </div>
       
@@ -43,7 +43,7 @@
       </div>
     
       <div class="nav-links">   
-        <a href=""><span id="log">Logout</span></a>
+        <a href="login.php"><span id="log">Logout</span></a>
         <a href="update.php">Account</a>
         <a href="menu.php">Menu</a>
         <a href="landing.php">Home</a>

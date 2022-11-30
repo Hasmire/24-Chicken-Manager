@@ -5,7 +5,8 @@
   --black: #232323;
   --grey: #6f6f6f;
   --white: #ffffff;
-  --white2: #F7F7F7; /* only for background */
+  --white2: #F7F7F7;
+  /* only for background */
 }
 
 body {
@@ -17,8 +18,7 @@ body {
   background-image: url('../images/24chicken-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.352);
-  overflow-x: hidden;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.726);
 }
 
 #page-container {
@@ -27,7 +27,8 @@ body {
 }
 
 #content-wrap {
-  padding-bottom: 60px; /* footer height */
+  padding-bottom: 60px;
+  /* footer height */
 }
 
 .content-margin {
@@ -43,7 +44,7 @@ body {
 }
 
 /* CONTENT */
-.login {
+.title {
   position: absolute;
   top: 50%;
   left: 0;
@@ -53,24 +54,16 @@ body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 
-  background-color: var(--white);
-  width: 400px;
-  height: 390px;
-  border-radius: 10px;
-  -webkit-filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
-  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
-}
-
-.login-content {
-  margin: -15px 60px;
-}
-
-.login h1 {
   font-family: 'Fugaz One', cursive;
-  text-transform: uppercase;
   text-align: center;
-  font-weight: normal;
-  font-size: 40px;
+  text-shadow: rgba(0, 0, 0, 0.621) 5px 5px 5px;
+}
+
+.title h1 {
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 400;
+  margin: 0;
 }
 
 #yellow {
@@ -82,53 +75,37 @@ body {
   color: var(--red);
 }
 
-.login label {
-  color: var(--black);
-  font-size: 12px;
+.title h3 {
+  color: var(--white);
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: -10px;
 }
 
-.login input[type=email], .login input[type=password] {
-  width: 100%;
-  padding: 6px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #bdbdbd;
-  border-radius: 3px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
+.title a {
+  text-decoration: none;
 }
 
-.login input[type=submit] {
+.title button {
   display: block;
-  width: 100%;
+  width: 250px;
   padding: 12px 0;
   margin: 20px auto;
   box-sizing: border-box;
-  background-color: var(--black);
+  background-color: var(--red);
   font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
   border-radius: 3px;
   color: var(--white);
   border: none;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
 }
 
-.login input[type=submit]:hover {
-  background-color: var(--red);
-  transition: 0.5s;
-}
-
-.login p {
-  text-align: center;
-  font-size: 14px;
-  padding-top: 10px;
-  color: var(--grey);
-}
-
-.login a {
-  text-decoration: none;
-  color: var(--black);
-}
-
-.login a:hover {
+.title button:hover {
+  background-color: var(--white);
   color: var(--red);
+  transition: 0.5s;
+  top: -8px;
 }

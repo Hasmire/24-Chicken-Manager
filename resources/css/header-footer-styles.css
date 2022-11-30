@@ -94,7 +94,7 @@ body {
   display: none;
 }
 
-@media (max-width:600px) {
+@media (max-width:900px) {
   .hamburger {
     margin-top: 14px;
     margin-left: 12px;
@@ -148,7 +148,7 @@ body {
   }
 
   .nav>.content-margin>#nav-check:checked~.nav-links {
-    height: 250px;
+    height: 350px;
     overflow-y: auto;
   }
 }
