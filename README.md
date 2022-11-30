@@ -1,16 +1,16 @@
-# 25 Chicken
-*Description goes here*
+# 24 Chicken Shopping Cart
+*description*
 
 ## Installation
 1. Install PHP and [Composer](https://getcomposer.org/ "Composer")
 2. Clone this repo
-3. Run the following code to install other dependencies:
+3. Change database configuration in the .env.example file
+4. Run the following code to install other dependencies:
 ```
 composer install
 php artisan key:generate
-cp .env.example .env
+copy .env.example .env
 ```
-4. Change database configuration in the .env file
 5. Run the following code to initialize the development server:
 ```
 php artisan serve
@@ -18,9 +18,9 @@ php artisan serve
 6. Open http://localhost:8000 in your browser
 
 ## For Frontend
-Put the files in the /resources/ directory.
+Put the html or php files in the /resources/views/ directory.
 
-If you are using **blade templates**, put the blade.php files in the /resources/views/ directory. Also, put the css, js, images, and other public access files in the /public/ directory.
+Also, put the css, js, images, and other public access files in the /public/ directory.
 
 ## Blade Template
 Click [here](https://laravel.com/docs/9.x/blade "here") for the documentation of the PHP templating engine to be used.
