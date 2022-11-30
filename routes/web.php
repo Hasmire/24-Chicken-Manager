@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('update');
+Route::get('landing', function () {
+    return view('end-user.landing');
 });
+
+Route::get('/menu', [FoodController::class, 'menu']);
+Route::get('/menu/{food:id}', [FoodController::class, 'item']);

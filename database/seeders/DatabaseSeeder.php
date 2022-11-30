@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         // Create initial food values
         DB::table('foods')->insert([
             'name' => 'Original',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
             'thumbnail' => '/images/placeholder.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('foods')->insert([
             'name' => 'Jack Daniels',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
             'thumbnail' => '/images/placeholder.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('foods')->insert([
             'name' => 'Garlic',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
             'thumbnail' => '/images/placeholder.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('foods')->insert([
             'name' => 'Yangnyeom',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
             'thumbnail' => '/images/placeholder.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

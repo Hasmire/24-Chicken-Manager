@@ -16,10 +16,9 @@
         <div class="column2">
             <div class="vertical-center">
                 <!-- BACKEND: change details depending on the item -->
-                <h1 id="flavor">Flavor</h1>
-                <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque augue
-                    vitae lacus cursus, sit amet maximus erat fermentum.</p>
-                <h3 id="price">₱ 000.00</h3>
+                <h1 id="flavor">{{ $food->name }}</h1>
+                <p id="description">{{ $food->description }}</p>
+                <h3 id="price">₱ {{ $food->amount }}</h3>
 
                 <hr id="divider">
                 <br>

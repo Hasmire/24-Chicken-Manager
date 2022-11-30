@@ -21,8 +21,8 @@
         <div class="nav-links">
             <a href="login.php"><span id="log">Logout</span></a>
             <a href="update.php">Account</a>
-            <a href="menu.php">Menu</a>
-            <a href="landing.php">Home</a>
+            <a href="menu">Menu</a>
+            <a href="landing">Home</a>
         </div>
     </div>
 </div>
