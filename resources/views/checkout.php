@@ -7,12 +7,12 @@
 
   <!-- TITLE -->
   <title>Order Checkout</title>
-  <link rel="icon" href="images/24chicken-icon.png" type="image/x-icon">
+  <link rel="icon" href="../images/24chicken-icon.png" type="image/x-icon">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/checkout-styles.css">
+  <link rel="stylesheet" href="../css/checkout-styles.css">
   <style>
-    <?php include 'css/header-footer-styles.css'; ?>
+    <?php include '../css/header-footer-styles.css'; ?>
   </style>
 
   <!-- FONTS -->
@@ -28,7 +28,7 @@
   <div id="content-wrap">
     
   <!-- NAVBAR -->
-  <?php include 'header-footer/header-end-user.php';?>
+  <?php include '../header-footer/header-end-user.php';?>
 
   <!-- CONTENT -->
   <div class="header">
@@ -72,7 +72,7 @@
           <div class="item">
             <div class="item-image">
             <!-- change image depending on the product -->
-              <img src="images/24chicken-item-sample.jpg" id="product-image">
+              <img src="../images/24chicken-item-sample.jpg" id="product-image">
             </div>
               <h3 id="flavor">Flavor</h3>
               <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
@@ -84,7 +84,7 @@
           <div class="item">
             <div class="item-image">
             <!-- change image depending on the product -->
-              <img src="images/24chicken-item-sample.jpg" id="product-image">
+              <img src="../images/24chicken-item-sample.jpg" id="product-image">
             </div>
               <h3 id="flavor">Flavor</h3>
               <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
@@ -96,7 +96,7 @@
           <div class="item">
             <div class="item-image">
             <!-- change image depending on the product -->
-              <img src="images/24chicken-item-sample.jpg" id="product-image">
+              <img src="../images/24chicken-item-sample.jpg" id="product-image">
             </div>
               <h3 id="flavor">Flavor</h3>
               <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
@@ -130,7 +130,7 @@
   </div>
   
   <!-- FOOTER -->
-  <?php include 'header-footer/footer-private.php';?>
+  <?php include '../header-footer/footer-private.php';?>
   </div>
 </body>
 
