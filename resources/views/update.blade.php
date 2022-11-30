@@ -17,7 +17,7 @@
     <!-- CONTENT - Sign up Form-->
     <div class="row">
         <div class="column1">
-            <form method="POST" action="update.php">
+            <form method="POST" action="{{ route('users.update') }}">
                 <!-- BACKEND: change values depending on user -->
                 <h3 id="heading">Customer Information</h3>
 
