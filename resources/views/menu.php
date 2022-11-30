@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- TITLE -->
-  <title>Update Customer Information</title>
-  <link rel="icon" href="images/24chicken-icon.png" type="image/x-icon">
+  <title>24 Chicken Menu</title>
+  <link rel="icon" href="../images/24chicken-icon.png" type="image/x-icon">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/menu-styles.css">
+  <link rel="stylesheet" href="../css/menu-styles.css">
   <style>
-    <?php include 'css/header-footer-styles.css'; ?>
+    <?php include '../css/header-footer-styles.css'; ?>
   </style>
 
   <!-- FONTS -->
@@ -28,7 +28,7 @@
   <div id="content-wrap">
     
   <!-- NAVBAR -->
-  <?php include 'header-footer/header-end-user.php';?>
+  <?php include '../header-footer/header-end-user.php';?>
 
   <!-- CONTENT -->
   <div class="header">
@@ -46,7 +46,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -59,7 +59,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -72,7 +72,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -85,7 +85,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -98,7 +98,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -111,7 +111,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -124,7 +124,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -137,7 +137,7 @@
     <form action="item.php">
       <article class="card">
         <div class="image">
-          <img src="images/24chicken-item-sample.jpg" alt="gallery" />
+          <img src="../images/24chicken-item-sample.jpg" alt="gallery" />
         </div>
         <div class="card-content">
           <div class="flavor">Flavor</div>
@@ -153,7 +153,7 @@
   </div>
   
   <!-- FOOTER -->
-  <?php include 'header-footer/footer-private.php';?>
+  <?php include '../header-footer/footer-private.php';?>
   </div>
 </body>
 
