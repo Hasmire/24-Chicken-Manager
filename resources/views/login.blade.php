@@ -1,11 +1,12 @@
 <x-layout-public>
     @push('title')
-    <title>Login</title>
+        <title>Login</title>
     @endpush
 
     @push('styles')
-    <link href="{{ asset('css/login-styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/login-styles.css') }}" rel="stylesheet">
     @endpush
+
     <div class="login">
         <h1><span id="yellow">24</span> <span id="red">Chicken</span></h1>
 
