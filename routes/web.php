@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +43,12 @@ Route::get('login', function () {
 
 //Edit User Routes
 Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
+
+Route::get('menu', [FoodController::class, 'menu']);
+Route::get('menu/{food:id}', [FoodController::class, 'show']);
+
+Route::get('checkout', [CheckoutController::class, 'show']);
+Route::post('add', [CheckoutController::class, 'add']);
+Route::post('update-order', [CheckoutController::class, 'update']);
+Route::post('remove-order', [CheckoutController::class, 'remove']);
+Route::post('place-order', [CheckoutController::class, 'place']);
