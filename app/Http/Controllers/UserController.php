@@ -37,10 +37,10 @@ class UserController extends Controller
     {
         //validate inputs
         $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
             'email' => 'required|unique:users,email',
-            'address' => 'required',
+            'address' => 'required|min:5',
             'password' => 'required|min:8'
         ]);
 
@@ -85,10 +85,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'firstname' => 'required|min:2',
+            'lastname' => 'required|min:2',
             'email' => 'required|unique:users,email,'.$user->id, //Email must be unique but ignore current email
-            'address' => 'required',
+            'address' => 'required|min:5',
             'password' => 'required|min:8'
         ]);
         // User::create($request->all());

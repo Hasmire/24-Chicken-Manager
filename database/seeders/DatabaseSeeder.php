@@ -25,7 +25,22 @@ class DatabaseSeeder extends Seeder
         // CHANGE ALL OF THIS LATER TO ELOQUENCE OBJECT CREATE
         // DELETE CARBON AFTER CHANGING TO ELOQUENCE
         // Create fake Users
-        User::factory(15)->create();
+        DB::table('users')->insert([ //SAMPLE ADMIN
+            'firstname' => 'John',
+            'lastname' => 'Doe',
+            'address' => '123 Grove Street',
+            'email' => 'admin@chicken.com',
+            'password' =>  bcrypt('password')
+        ]);
+        DB::table('users')->insert([ //SAMPLE employee
+            'firstname' => 'Sally',
+            'lastname' => 'Smith',
+            'address' => '123 Grove Street',
+            'email' => 'employee@chicken.com',
+            'password' =>  bcrypt('password')
+        ]);
+
+        User::factory(13)->create();
 
         // Create employees from first 5 users
         DB::table('employees')->insert([

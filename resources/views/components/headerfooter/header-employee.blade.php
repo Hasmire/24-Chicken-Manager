@@ -5,7 +5,7 @@
         <div class="nav-header">
             <div class="nav-title">
                 <img src="../images/24chicken-logo.png" id="logo">
-                <p>Hello, <span id="red">John Doe</span>!</p>
+                <p>Hello, <span id="red">{{ auth()->user()->firstname }}</span>!</p>
             </div>
         </div>
 
@@ -22,6 +22,10 @@
         <div class="nav-links">
             <a href=""><span id="log">Logout</span></a>
             <a href="order.php">Orders</a>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
 </div>
