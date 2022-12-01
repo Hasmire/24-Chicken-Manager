@@ -17,12 +17,16 @@
                 </div>
             </label>
         </div>
-
+        
         <div class="nav-links">
+            <a href="edit">Account</a>
+            <a href="menu.php">Menu</a>
+            <a href="/">Home</a>
             <a href="login.php"><span id="log">Logout</span></a>
-            <a href="update.php">Account</a>
-            <a href="/menu">Menu</a>
-            <a href="/landing">Home</a>
         </div>
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
     </div>
 </div>

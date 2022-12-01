@@ -13,6 +13,7 @@
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/header-footer-styles.css') }}">
 
+
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Open+Sans:wght@700&display=swap"
         rel="stylesheet">
@@ -30,6 +31,8 @@
 
             <!-- CONTENT -->
             {{ $slot }}
+
+            <x-success-message/>
 
             <!-- FOOTER -->
             <x-headerfooter.footer />
