@@ -12,7 +12,7 @@
     <!-- CSS -->
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('css/header-footer-styles.css') }}">
-
+    
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Open+Sans:wght@700&display=swap"
         rel="stylesheet">
@@ -25,16 +25,22 @@
 <body>
     <div id="page-container">
         <div id="content-wrap">
+            
             <!-- NAVBAR -->
             <x-headerfooter.header-public />
 
+            
+
             <!-- CONTENT -->
             {{ $slot }}
-
+            
+            <x-success-message/>
+            
             <!-- FOOTER -->
             <x-headerfooter.footer />
         </div>
     </div>
+
 
 </body>
 
