@@ -24,16 +24,17 @@ class SessionsController extends Controller
 
             foreach($employees as $employee){
                 if($employee->user_id == $user->id){
-                    return redirect('employee');
+                    if($employee->ismanager)
+                    {
+                        return redirect('admin');
+                    }
+                    else
+                    {
+                        return redirect('employee');
+                    }
                 }
             }
             return redirect('landing');
-            // if($user->id == 1){
-            //     return redirect('admin');
-            // }
-            // else{
-            //     return redirect('landing');
-            // }          
         };
 
         //Check for errors
