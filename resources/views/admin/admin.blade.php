@@ -9,10 +9,15 @@
 
 <div class="header">
   <div class="content-margin">
-      <h1>Menu Editor</h1>
+      <h1>Menu Manager</h1>
       <p></p>
   </div>
 </div>
+
+
+{{-- ADD ITEM TO MENU --}}
+<a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">+ Add Menu Item</button></a>
+
 
 <div class="cards">
   <!-- BACKEND: article will repeat depending on the # of items -->
@@ -29,7 +34,6 @@ to the specific flavor's item.php -->
   @endif
 </div>
 
-{{-- ADD ITEM TO MENU --}}
-<a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">Add Menu Item</button></a>
+
   
 </x-layout-admin>
