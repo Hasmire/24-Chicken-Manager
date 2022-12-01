@@ -23,8 +23,8 @@ class SessionsController extends Controller
             $user = auth()->user();
 
             foreach($employees as $employee){
-                if($employee->user_id == $user->id){
-                    if($employee->ismanager)
+                if($employee->user_id == $user->id){ //check if employee
+                    if($employee->ismanager)    //check if admin
                     {
                         return redirect('admin');
                     }
