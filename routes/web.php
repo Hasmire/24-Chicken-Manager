@@ -40,5 +40,4 @@ Route::get('login', function () {
 
 
 //Edit User Routes
-// Route::get('update', [UserController::class, 'edit'])->middleware('auth');
-// Route::post('update', [UserController::class, 'update'])->middleware('auth');
+Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
