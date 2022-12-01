@@ -77,33 +77,33 @@ class DatabaseSeeder extends Seeder
         // Create initial food values
         DB::table('foods')->insert([
             'name' => 'Original',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('foods')->insert([
             'name' => 'Jack Daniels',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('foods')->insert([
             'name' => 'Garlic',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('foods')->insert([
             'name' => 'Yangnyeom',
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(8),
             'amount' => 125,
-            'thumbnail' => '/images/placeholder.jpg',
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -111,21 +111,21 @@ class DatabaseSeeder extends Seeder
         // Create initial promo values
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

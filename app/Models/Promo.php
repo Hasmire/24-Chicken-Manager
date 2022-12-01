@@ -9,7 +9,8 @@ class Promo extends Model
 {
     use HasFactory;
 
-    public function order() {
+    public function order()
+    {
         return $this->belongsToMany(User::class);
     }
 }
