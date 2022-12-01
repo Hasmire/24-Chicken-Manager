@@ -45,60 +45,31 @@
         <div class="column2">
             <h3 id="heading">Order Information</h3>
 
-            <form action="checkout.php">
-                <!-- BACKEND: "item" div will repeat depending on the # of items added to cart-->
-                <div class="item">
-                    <div class="item-image">
-                        <!-- change image depending on the product -->
-                        <img src="../images/24chicken-item-sample.jpg" id="product-image">
-                    </div>
-                    <h3 id="flavor">Flavor</h3>
-                    <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
-                    <button type="submit" class="delete">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-                <div class="item">
-                    <div class="item-image">
-                        <!-- change image depending on the product -->
-                        <img src="../images/24chicken-item-sample.jpg" id="product-image">
-                    </div>
-                    <h3 id="flavor">Flavor</h3>
-                    <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
-                    <button type="submit" class="delete">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-                <div class="item">
-                    <div class="item-image">
-                        <!-- change image depending on the product -->
-                        <img src="../images/24chicken-item-sample.jpg" id="product-image">
-                    </div>
-                    <h3 id="flavor">Flavor</h3>
-                    <p id="price-quantity">₱000.00<br><span class="quantity">Qty. 2</span></p>
-                    <button type="submit" class="delete">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </form>
+            <!-- BACKEND: "item" div will repeat depending on the # of items added to cart-->
+            @if ($foods->count())
+                @foreach ($foods as $food)
+                    <x-checkout-item :food="$food" />
+                @endforeach
+            @else
+                <p class="text-center">Cart is empty</p>
+            @endif
 
             <br>
             <form action="menu.php">
                 <label for="type" id="form-label">Order Type</label><br>
                 <select id="type" name="type">
-                    <option value="Dine-in">Dine In</option>
-                    <option value="Takeout">Takeout</option>
-                    <option value="Delivery">Delivery</option>
+                    <option value="1">Dine In</option>
+                    <option value="2">Takeout</option>
+                    <option value="3">Delivery</option>
                 </select><br>
 
                 <label for="promo" id="form-label">Promo Code</label><br>
                 <input type="text" id="promo" name="promo"><br>
 
                 <h3 id="total" id="total-label">Total</h3>
-                <p id="total-price">₱000.00</p>
+                <p id="total-price">₱{{ $total }}</p>
 
+                <input type="hidden" name="total" value="{{ $total }}">
                 <br><br>
                 <input type="submit" id="place-order" name="place-order" value="Place order">
             </form>

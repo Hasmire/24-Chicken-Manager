@@ -28,9 +28,9 @@
                         <form method="POST" action="/add">
                             @csrf
                             <label for="quantity">Quantity</label>
-                            <input type="number" name="quantity" placeholder="0" min="0" value="0"
+                            <input type="number" name="quantity" placeholder="1" min="1" value="1"
                                 required>
-                            <input type="hidden" name="item" value="{{ $food }}">
+                            <input type="hidden" name="id" value="{{ $food->id }}">
                             <input type="submit" name="add" value="add">
                         </form>
                     </div>
