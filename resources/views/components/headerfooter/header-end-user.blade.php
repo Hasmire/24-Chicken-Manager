@@ -19,9 +19,9 @@
         </div>
         
         <div class="nav-links">
-            <a href="update.php">Account</a>
+            <a href="edit">Account</a>
             <a href="menu.php">Menu</a>
-            <a href="landing.php">Home</a>
+            <a href="/">Home</a>
             <a href="login.php"><span id="log">Logout</span></a>
         </div>
         <form action="/logout" method="post">
