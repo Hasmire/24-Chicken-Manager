@@ -1,6 +1,6 @@
 <x-layout-admin>
     @push('title')
-        <title>Create Menu Item</title>
+        <title>Update Menu Item</title>
     @endpush
 
     @push('styles')
@@ -9,37 +9,36 @@
     
     <div class="header">
         <div class="content-margin">
-            <h1>Add Menu Item</h1>
+            <h1>Update Menu Item</h1>
             <p>Please enter the required information below.</p>
         </div>
     </div>
-
-    <!-- CONTENT - Create Item Form-->
+    <!-- CONTENT - Update Item Form-->
     <div class="row">
         <div class="column1">
-                <form method="POST" role="form" action="{{route('adminpage.store')}}">
+                <form method="POST" role="form" action="{{route('adminpage.update', $food->id)}}">
                     @csrf
+                    @method('PUT')
                     <h3 id="heading">Item Information</h3>
 
                     <div class="form-half">
                         <div class="form-left">
                             <label for="name">Menu Item Name</label><br>
-                            <input type="text" name="name" value="{{ old('name') }}" required><br>
+                            <input type="text" name="name" value="{{ $food->name }}" required><br>
                         </div>
                         <div class="form-right">
                             <label for="amount">Price</label><br>
-                            <input type="number" name="amount" value="{{ old('amount') }}" required><br>
+                            <input type="number" name="amount" value="{{ $food->amount }}" required><br>
                         </div>
                     </div>
                     <br>
 
                     <label for="description">Description</label><br>
-                    <input type="text" name="description" value="{{ old('description') }}" required><br>
+                    <input type="text" name="description" value="{{ $food->description }}" required><br>
                     <br>
 
-                    {{-- default thumbnail --}}
                     <label for="thumbnail">Thumbnail</label><br>
-                    <input type="text" name="thumbnail" value="/images/24chicken-item-sample.jpg" required><br>
+                    <input type="text" name="thumbnail" value="{{ $food->thumbnail }}" required><br>
                     <br>
 
                     {{-- Displays an error when inputs are invalid --}}

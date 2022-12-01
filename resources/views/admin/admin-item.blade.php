@@ -25,15 +25,10 @@
 
                 <div class="quantity-container">
                     <div class="quantity-content">
-                        <form method="POST" action="">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $food->id }}">
-                            <input type="submit" name="edit" value="edit">
-                        </form>
+                        <a class="button" href="{{ route('adminpage.edit',$food->id) }}" style="text-decoration: none">Edit</a>
                         <form method="POST" action="{{ route('adminpage.destroy', $food->id) }}">
                             @method('DELETE')
                             @csrf
-                            {{-- <input type="hidden" name="id" value="{{ $food->id }}"> --}}
                             <input type="submit" value="delete">
                         </form>
                         <a href="{{ route('adminpage.index') }}" class="button" style="text-decoration: none">Back</a>
