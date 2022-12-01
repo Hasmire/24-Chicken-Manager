@@ -20,7 +20,7 @@
 
         <div class="nav-links">
             <a href=""><span id="log">Logout</span></a>
-            <a href="admin-menu.php">Menu</a>
+            <a href="{{ route('adminpage.index') }}">Menu</a>
             <a href="user-list.php">Users</a>
             <a href="admin-employee.php">Employee</a>
             <form action="/logout" method="post">

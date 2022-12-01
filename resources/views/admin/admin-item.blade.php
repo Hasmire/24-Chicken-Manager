@@ -36,6 +36,7 @@
                             {{-- <input type="hidden" name="id" value="{{ $food->id }}"> --}}
                             <input type="submit" value="delete">
                         </form>
+                        <a href="{{ route('adminpage.index') }}" class="button" style="text-decoration: none">Back</a>
                     </div>
                 </div>
             </div>

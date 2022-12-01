@@ -1,30 +1,25 @@
 <x-layout-admin>
     @push('title')
-        <title>Update Customer Information</title>
+        <title>Create Menu Item</title>
     @endpush
 
     @push('styles')
         <link href="{{ asset('css/update-styles.css') }}" rel="stylesheet">
     @endpush
-
-    @php  //Used for form fields
-        $user = auth()->user();
-        $id = $user->id;
-    @endphp
     
     <div class="header">
         <div class="content-margin">
-            <h1>Update Customer Information</h1>
-            <p>Please enter the required information below and save your profile.</p>
+            <h1>Add Menu Item</h1>
+            <p>Please enter the required information below.</p>
         </div>
     </div>
 
     <!-- CONTENT - Sign up Form-->
     <div class="row">
         <div class="column1">
-                <form method="POST" role="form" action="{{route('adminpage.store', $id)}}">
+                <form method="POST" role="form" action="{{route('adminpage.store')}}">
                     @csrf
-                    <h3 id="heading">Customer Information</h3>
+                    <h3 id="heading">Item Information</h3>
 
                     <div class="form-half">
                         <div class="form-left">
