@@ -8,6 +8,8 @@ use App\Models\Order_type;
 use Illuminate\Http\Request;
 use Cart;
 use Darryldecode\Cart\CartCondition;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -16,8 +18,8 @@ class CheckoutController extends Controller
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
-        $wish_list = app('wishlist');
-        $wish_list::session($userId)->condition($c1);
+
+        Cart::session($userId)->condition($c1);
 
         return view('end-user.checkout', [
             'foods' => Cart::session($userId)->getContent(),
@@ -57,7 +59,6 @@ class CheckoutController extends Controller
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
-        dd(gettype(Cart::session($userId)));
         Cart::session($userId)->clearCartConditions();
 
         switch (request('type')) {
@@ -76,18 +77,16 @@ class CheckoutController extends Controller
             Cart::session($userId)->condition($cpromo);
         }
 
-        /*
-        DB::table('cartStorage')->insert([
+        DB::table('orders')->insert([
             'user_id' => $userId,
             'order_type_id' => request('type'),
-            'promo_id' => request('promo'),
-            'cart' => Cart::,
+            'cart' => Cart::session($userId)->getContent(),
+            'conditions' => Cart::session($userId)->getConditions(),
             'amount' => Cart::session($userId)->getSubTotal(),
-            'status' => 'pending',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-*/
+
         Cart::session($userId)->clear();
         return back();
     }

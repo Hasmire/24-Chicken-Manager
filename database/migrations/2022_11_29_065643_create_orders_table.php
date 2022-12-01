@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->cascadeOnDelete();
             $table->foreignId('order_type_id');
-            $table->foreignId('promo_id')->nullable();
-            $table->double('amount', null, '2');
+            $table->longText('cart');
+            $table->longText('conditions');
+            $table->double('amount');
             $table->string('status')->default('pending');
             $table->timestamps();
         });
