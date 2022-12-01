@@ -4,7 +4,8 @@
 
         <div class="nav-header">
             <div class="nav-title">
-                <img src="../images/24chicken-logo.png" id="logo">
+                {{-- <img src="../images/24chicken-logo.png" id="logo"> --}}
+                <img src="{{ asset('images/24chicken-logo.png') }}" id="logo">
             </div>
         </div>
 
