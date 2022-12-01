@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 //End user landing page
 Route::get('landing', function(){
-    return view('landing');
+    return view('end-user.landing');
 })->middleware('auth');
 
 //Sign up Routes
@@ -45,10 +45,11 @@ Route::get('login', function () {
 //Edit User Routes
 Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
 
-Route::get('menu', [FoodController::class, 'menu']);
-Route::get('menu/{food:id}', [FoodController::class, 'show']);
 
-Route::get('checkout', [CheckoutController::class, 'show']);
-Route::post('add', [CheckoutController::class, 'add']);
-Route::post('remove-order', [CheckoutController::class, 'remove']);
-Route::post('place-order', [CheckoutController::class, 'place']);
+Route::get('menu', [FoodController::class, 'menu'])->middleware('auth');
+Route::get('menu/{food:id}', [FoodController::class, 'show'])->middleware('auth');
+
+Route::get('checkout', [CheckoutController::class, 'show'])->middleware('auth');
+Route::post('add', [CheckoutController::class, 'add'])->middleware('auth');
+Route::post('remove-order', [CheckoutController::class, 'remove'])->middleware('auth');
+Route::post('place-order', [CheckoutController::class, 'place'])->middleware('auth');

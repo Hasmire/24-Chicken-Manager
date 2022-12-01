@@ -20,7 +20,7 @@
 
         <div class="nav-links">
             <a href="edit">Account</a>
-            <a href="menu.php">Menu</a>
+            <a href="menu">Menu</a>
             <a href="/">Home</a>
             <a href="login.php"><span id="log">Logout</span></a>
         </div>

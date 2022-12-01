@@ -18,8 +18,6 @@ return new class extends Migration
             $table->longText('cart_data');
             $table->timestamps();
             $table->primary('id');
-            $table->foreignId('user_id')->cascadeOnDelete();
-            $table->string('status');
         });
     }
 
