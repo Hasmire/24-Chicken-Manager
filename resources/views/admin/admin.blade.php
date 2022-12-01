@@ -30,6 +30,6 @@ to the specific flavor's item.php -->
 </div>
 
 {{-- ADD ITEM TO MENU --}}
-<a href="" style="text-decoration:none;"><button id="checkout">Add Menu Item</button></a>
+<a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">Add Menu Item</button></a>
   
 </x-layout-admin>
