@@ -9,7 +9,7 @@
         <link rel="icon" href="images/24chicken-icon.png" type="image/x-icon">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="admin-menu-styles.css">
+        <link rel="stylesheet" href="css/admin-menu-styles.css">
 
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Open+Sans:wght@700&display=swap"
