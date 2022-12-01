@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
-use App\Models\Promo;
-use App\Models\Order_type;
 use Illuminate\Http\Request;
 use Cart;
 use Darryldecode\Cart\CartCondition;
