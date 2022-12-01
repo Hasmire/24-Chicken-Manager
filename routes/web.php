@@ -41,3 +41,8 @@ Route::get('login', function () {
 
 //Edit User Routes
 Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
+
+//Employee Dashboard Route
+Route::get('employee', function () {
+    return view('employee');
+});
