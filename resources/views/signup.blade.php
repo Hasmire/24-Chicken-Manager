@@ -6,7 +6,7 @@
     @push('styles')
         <link href="{{ asset('css/signup-styles.css') }}" rel="stylesheet">
     @endpush
-
+    
     <div class="header">
         <div class="content-margin">
             <h1>Sign up</h1>
@@ -17,30 +17,31 @@
     <!-- CONTENT - Sign up Form-->
     <div class="row">
         <div class="column1">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('users.store') }}">
+                @csrf
                 <!-- action depending on isEmployee -->
                 <h3 id="heading">Customer Information</h3>
 
                 <div class="form-half">
                     <div class="form-left">
-                        <label for="fname">First Name</label><br>
-                        <input type="text" name="fname" placeholder="First Name" required>
+                        <label for="firstname">First Name</label><br>
+                        <input type="text" name="firstname" placeholder="First Name" value="{{ old('firstname') }}" required>
                     </div>
                     <div class="form-right">
-                        <label for="lname">Last Name</label><br>
-                        <input type="text" name="lname" placeholder="Last Name" required><br>
+                        <label for="lastname">Last Name</label><br>
+                        <input type="text" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}" required><br>
                     </div>
                 </div>
                 <br>
 
                 <label for="address">Address</label><br>
-                <input type="text" name="address" placeholder="Enter your address" required><br>
+                <input type="text" name="address" placeholder="Enter your address" value="{{ old('address') }}" required><br>
                 <br>
 
                 <div class="form-half">
                     <div class="form-left">
                         <label for="email">Email Address</label><br>
-                        <input type="email" name="email" placeholder="Enter your email" required><br>
+                        <input type="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" required><br>
                     </div>
                     <div class="form-right">
                         <label for="password">Password</label><br>
@@ -50,6 +51,10 @@
 
                 <br><br>
                 <input type="submit" name="signup" value="Sign Up">
+
+                {{-- Displays an error when inputs are invalid --}}
+                <x-error-message/> 
+                
             </form>
         </div>
 
