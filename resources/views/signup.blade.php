@@ -6,7 +6,7 @@
     @push('styles')
         <link href="{{ asset('css/signup-styles.css') }}" rel="stylesheet">
     @endpush
-
+    
     <div class="header">
         <div class="content-margin">
             <h1>Sign up</h1>

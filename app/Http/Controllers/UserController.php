@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Validation\Rule;
-
 
 class UserController extends Controller
 {
@@ -72,9 +70,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
-        return view('update',compact('user'));
+        return view('update');
     }
 
     /**
@@ -89,15 +87,14 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,'.$user->id, //Email must be unique but ignore current email
             'address' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:8'
         ]);
-
         // User::create($request->all());
         $user->update($request->all());     
 
-        return redirect('/')->with('success', 'Updated Successfully');;
+        return back()->with('success', 'Updated Successfully');;
     }
 
     /**

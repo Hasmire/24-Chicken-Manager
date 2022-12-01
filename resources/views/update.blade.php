@@ -7,6 +7,11 @@
         <link href="{{ asset('css/update-styles.css') }}" rel="stylesheet">
     @endpush
 
+    @php  //Used for form fields
+        $user = auth()->user();
+        $id = $user->id;
+    @endphp
+    
     <div class="header">
         <div class="content-margin">
             <h1>Update Customer Information</h1>
@@ -17,39 +22,41 @@
     <!-- CONTENT - Sign up Form-->
     <div class="row">
         <div class="column1">
-            <form method="POST" action="{{ route('users.update') }}">
-                <!-- BACKEND: change values depending on user -->
-                <h3 id="heading">Customer Information</h3>
+                <form method="POST" role="form" action="{{route('users.update', $id)}}">
+                    @csrf
+                    @method('PUT')
+                    <h3 id="heading">Customer Information</h3>
 
-                <div class="form-half">
-                    <div class="form-left">
-                        <label for="fname">First Name</label><br>
-                        <input type="text" name="fname" value="Juan" required><br>
+                    <div class="form-half">
+                        <div class="form-left">
+                            <label for="firstname">First Name</label><br>
+                            <input type="text" name="firstname" value="{{ $user->firstname }}" required><br>
+                        </div>
+                        <div class="form-right">
+                            <label for="lname">Last Name</label><br>
+                            <input type="text" name="lastname" value="{{ $user->lastname }}" required><br>
+                        </div>
                     </div>
-                    <div class="form-right">
-                        <label for="lname">Last Name</label><br>
-                        <input type="text" name="lname" value="dela Cruz" required><br>
-                    </div>
-                </div>
-                <br>
+                    <br>
 
-                <label for="address">Address</label><br>
-                <input type="text" name="address" value="24 Chicken St., Brgy. Manok, Q.C." required><br>
-                <br>
+                    <label for="address">Address</label><br>
+                    <input type="text" name="address" value="{{ $user->address }}" required><br>
+                    <br>
 
-                <div class="form-half">
-                    <div class="form-left">
-                        <label for="email">Email Address</label><br>
-                        <input type="email" name="email" value="juandc@gmail.com" required><br>
+                    <div class="form-half">
+                        <div class="form-left">
+                            <label for="email">Email Address</label><br>
+                            <input type="email" name="email" value="{{ $user->email }}" required><br>
+                        </div>
+                        <div class="form-right">
+                            <label for="password">Password</label><br>
+                            <input type="password" name="password" value="" required><br>
+                        </div>
                     </div>
-                    <div class="form-right">
-                        <label for="password">Password</label><br>
-                        <input type="password" name="password" value="password" required><br>
-                    </div>
-                </div>
-
-                <br><br>
-                <input type="submit" name="save" value="Save">
+                    {{-- Displays an error when inputs are invalid --}}
+                    <x-error-message/> 
+                    <br><br>
+                    <input type="submit" name="save" value="Save">
             </form>
         </div>
 
