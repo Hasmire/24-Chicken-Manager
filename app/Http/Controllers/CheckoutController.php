@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Promo;
+use App\Models\Order_type;
 use Illuminate\Http\Request;
 use Cart;
 
@@ -16,6 +18,7 @@ class CheckoutController extends Controller
         return view('end-user.checkout', [
             'foods' => Cart::getContent(),
             'total' => Cart::getSubTotal(),
+            'flag' => false,
         ]);
     }
 
@@ -49,5 +52,17 @@ class CheckoutController extends Controller
 
     public function place()
     {
+        if (request('place-order') == 'Calculate') {
+            $type = Order_type::find(request('type'))->amount;
+            $promo = Promo::where('name', '=', request('promo'))->first();
+            $total = ($promo != null) ? Cart::getSubTotal() - $promo->amount + $type : Cart::getSubTotal() + $type;
+            return view('end-user.checkout', [
+                'foods' => Cart::getContent(),
+                'total' => $total,
+                'flag' => true,
+            ]);
+        } else {
+
+        }
     }
 }

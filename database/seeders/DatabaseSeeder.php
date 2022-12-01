@@ -96,21 +96,21 @@ class DatabaseSeeder extends Seeder
         // Create initial promo values
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('promos')->insert([
             'name' => fake()->unique()->word(),
-            'amount' => fake()->randomFloat(),
+            'amount' => fake()->randomFloat(2, 10, 50),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
