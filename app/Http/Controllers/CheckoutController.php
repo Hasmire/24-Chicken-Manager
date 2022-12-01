@@ -7,6 +7,7 @@ use App\Models\Promo;
 use App\Models\Order_type;
 use Illuminate\Http\Request;
 use Cart;
+use Darryldecode\Cart\CartCondition;
 
 class CheckoutController extends Controller
 {
@@ -14,19 +15,18 @@ class CheckoutController extends Controller
     public function show()
     {
         //dd(Cart::getContent());
+        include(app_path() . '\Conditions.php');
+        Cart::condition($c1);
 
         return view('end-user.checkout', [
             'foods' => Cart::getContent(),
             'total' => Cart::getSubTotal(),
-            'flag' => false,
         ]);
     }
 
     public function add()
     {
-
         // To be added:
-        //\Cart::session($userId);
         $food = Food::find(request()->id);
         Cart::add(array(
             'id' => $food->id,
@@ -52,17 +52,27 @@ class CheckoutController extends Controller
 
     public function place()
     {
-        if (request('place-order') == 'Calculate') {
-            $type = Order_type::find(request('type'))->amount;
-            $promo = Promo::where('name', '=', request('promo'))->first();
-            $total = ($promo != null) ? Cart::getSubTotal() - $promo->amount + $type : Cart::getSubTotal() + $type;
-            return view('end-user.checkout', [
-                'foods' => Cart::getContent(),
-                'total' => $total,
-                'flag' => true,
-            ]);
-        } else {
+        include(app_path() . '\Conditions.php');
 
+        Cart::clearCartConditions();
+
+        switch (request('type')) {
+            case '1':
+                Cart::condition($c1);
+                break;
+            case '2':
+                Cart::condition($c2);
+                break;
+            case '3':
+                Cart::condition($c3);
+                break;
         }
+
+        if (request('promo') == 'PROMO') {
+            Cart::condition($cpromo);
+        }
+
+
+        return back();
     }
 }

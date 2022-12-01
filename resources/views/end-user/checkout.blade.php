@@ -59,7 +59,6 @@
                 @csrf
                 <label for="type" id="form-label">Order Type</label><br>
                 <select id="type" name="type" required>
-                    <option value="">Select an option</option>
                     <option value="1">Dine In</option>
                     <option value="2">Takeout</option>
                     <option value="3">Delivery</option>
@@ -73,11 +72,7 @@
 
                 <input type="hidden" name="total" value="{{ $total }}">
                 <br><br>
-                <input type="submit" id="place-order" name="place-order" value="Calculate">
-                <br><br><br>
-                @if ($flag)
-                    <input type="submit" id="place-order" name="place-order" value="Place order">
-                @endif
+                <input type="submit" id="place-order" name="place-order" value="Place order">
             </form>
         </div>
     </div>

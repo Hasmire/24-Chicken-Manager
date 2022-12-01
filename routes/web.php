@@ -25,6 +25,5 @@ Route::get('menu/{food:id}', [FoodController::class, 'show']);
 
 Route::get('checkout', [CheckoutController::class, 'show']);
 Route::post('add', [CheckoutController::class, 'add']);
-Route::post('update-order', [CheckoutController::class, 'update']);
 Route::post('remove-order', [CheckoutController::class, 'remove']);
 Route::post('place-order', [CheckoutController::class, 'place']);
