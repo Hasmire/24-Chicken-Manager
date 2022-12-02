@@ -60,3 +60,14 @@ Route::get('employee/order', [EmployeeController::class, 'show']);
 Route::get('employee/neworder', [EmployeeController::class, 'showNew']);
 Route::post('employee/addorder', [EmployeeController::class, 'addOrder']);
 Route::post('employee/neworder', [EmployeeController::class, 'newOrder']);
+
+/*//Employee Dashboard Route
+Route::get('employee', function () {
+    return view('employee');
+});
+*/
+
+//Admin Dashboard Route
+Route::get('admin', function () {
+    return view('admin');
+});
