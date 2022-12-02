@@ -21,7 +21,7 @@
 
         <div class="nav-links">
             <a href=""><span id="log">Logout</span></a>
-            <a href="order.php">Orders</a>
+            <a href="{{ url('employee') }}">Orders</a>
             <form action="/logout" method="post">
                 @csrf
                 <button type="submit">Logout</button>

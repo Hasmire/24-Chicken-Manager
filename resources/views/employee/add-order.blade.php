@@ -7,40 +7,48 @@
         <link href="{{ asset('css/add-order-styles.css') }}" rel="stylesheet">
     @endpush
 
+    <!-- CONTENT -->
     <div class="header">
         <div class="content-margin">
             <h1>Add Order</h1>
-            <p>Add the required items to the order.</p>
+            <p>Add items to a new order.</p>
         </div>
     </div>
 
     <!-- ADD ITEM SECTION -->
-    <form action="addorder" method="POST">
-        @csrf
-        <div class="add-item">
-            <h2>Add Item</h2>
-            <label for="item">Item</label>
-            <select name="id" required>
-                <option value="" disabled selected>Select Flavor</option>
-                @foreach ($products as $product)
-                    <option value="{{ $product->id }}">{{ $product->name }}</option>
-                @endforeach
-            </select>
+    <div class="add-item">
+        <form action="add-order" method="POST">
+            @csrf
+            <h2 id="heading">Add Item</h2>
+            <div class="row">
+                <div class="add-flavor">
+                    <label for="item">Item</label>
+                    <select name="id" required>
+                        <option value="" disabled selected>Select Flavor</option>
+                        @foreach ($products as $product)
+                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <label for="quantity">Quantity </label>
-            <input type="number" name="quantity" placeholder="1" min="1" value="1" required>
+                <div class="add-quantity">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" name="quantity" value="1" min="1" max="30">
+                </div>
 
-            <input id="button" type="submit" value="+ Add Item" name="add-item">
-        </div>
-    </form>
+                <div class="add-button">
+                    <input id="add-button" type="submit" value="+  Add Item" name="submit">
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- ITEMS ADDED -->
-    <div id="items-added">
-        <h2>Items Added</h2>
+    <div class="items-added">
+        <h2 id="heading">Items Added</h2>
 
         <!-- LEFT SECTION-->
         <div class="leftside">
-
             @if ($foods->count())
                 @foreach ($foods as $food)
                     <x-employee-item :food="$food" />
@@ -50,9 +58,13 @@
             @endif
         </div>
 
+        <div class="column-mid"></div> <!-- column separator -->
+        <hr id="divider"> <!-- row separator -->
+
         <!-- RIGHT SECTION-->
-        <form action="employee/order" method="POST">
-            <div class="rightside">
+        <div class="rightside">
+            <form action="place-order" method="POST">
+                @csrf
                 <label id="label-type" for="user">User </label>
                 <select id="type" name="user" required>
                     <option value="">Select User</option>
@@ -74,9 +86,13 @@
                 <label id="label-total">Total </label>
                 <p id="total-price">₱{{ $total }}</p><br>
 
-                <a href="order"><input type="button" id="delbutton" value="Cancel Order"></a>
-                <input type="submit" id="button" value="Save Order">
-            </div>
-        </form>
+                <div class="buttons">
+                    <button type="submit" id="cancel-button" name="submit" value="cancel">Cancel Order</button>
+                    <button type="submit" id="save-button" name="submit" value="save">Save</button>
+                </div>
+
+            </form>
+        </div>
     </div>
+
 </x-layout-employee>
