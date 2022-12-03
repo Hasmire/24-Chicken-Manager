@@ -109,12 +109,19 @@ class EmployeeController extends Controller
                 ]);
             }
             return back();
+        } elseif (request('submit') == "edit") {
+            return redirect('employee/edit-order')->with('order', $order);
+        }
+    }
+
+    public function showEdit()
+    {
+        if (session()->has('order')) {
+            $order = session('order');
         }
 
-        elseif (request('submit') == "edit") {
-            return view( ,[
-                'order' => $oder,
-            ]);
-        }
+        return view('employee.edit-order', [
+            'orders' => $order,
+        ]);
     }
 }
