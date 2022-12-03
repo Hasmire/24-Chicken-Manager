@@ -19,7 +19,7 @@ class EmployeeController extends Controller
         return view('employee.employee', [
             'pending' => Order::where('status', 'pending')->orderBy('id', 'ASC')->get(),
             'confirmed' => Order::where('status', 'confirmed')->orderBy('id', 'ASC')->get(),
-            'completed' => Order::where('status', 'completed')->orderBy('id', 'ASC')->get(),
+            'completed' => Order::where('status', 'completed')->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -155,10 +155,11 @@ class EmployeeController extends Controller
                 Cart::session($userId)->condition($cpromo);
             }
 
-        return redirect('employee/show-edit-order/'.$order->id);
+        return redirect('employee/show-edit-order/' . $order->id);
     }
 
-    public function showEdit(Order $order) {
+    public function showEdit(Order $order)
+    {
         $userId = auth()->user()->id;
         return view('employee.edit-order', [
             'header' => "Order #",
@@ -169,13 +170,12 @@ class EmployeeController extends Controller
             'products' => Food::all(),
             'orders' => $order,
         ]);
-
     }
 
     public function save()
     {
         $userId = auth()->user()->id;
-        if (request('submit') == "save") {
+        if (request('submit') == "save" && Cart::getContent()->count() > 0) {
             include(app_path() . '\Conditions.php');
             Cart::session($userId)->clearCartConditions();
 
@@ -202,7 +202,7 @@ class EmployeeController extends Controller
                 'conditions' => Cart::session($userId)->getConditions(),
                 'amount' => Cart::session($userId)->getSubTotal(),
             ]);
-        } else {
+        } elseif (request('submit') != "save" || Cart::getContent()->count() == 0) {
             Order::find(request('id'))->delete();
         }
 
