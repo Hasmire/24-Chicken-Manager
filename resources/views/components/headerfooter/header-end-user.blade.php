@@ -1,8 +1,4 @@
 <div class="nav">
-    <form action="/logout" method="post">
-        @csrf
-        <button class="logout-button" type="submit" style="height:30px;font-family: 'Open Sans', sans-serif;">LOGOUT</button>
-    </form>
     <div class="content-margin">
         <input type="checkbox" id="nav-check">
 
@@ -26,7 +22,11 @@
             <a href="edit">Account</a>
             <a href="menu">Menu</a>
             <a href="/">Home</a>
+            <a href="login.php"><span id="log">Logout</span></a>
         </div>
-        
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
     </div>
 </div>
