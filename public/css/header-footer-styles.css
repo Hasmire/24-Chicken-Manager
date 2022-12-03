@@ -67,7 +67,7 @@ body {
   font-size: 18px;
 }
 
-.nav>.content-margin>.nav-links>a {
+.nav>.content-margin>.nav-links>a, .logout-button {
   display: inline-block;
   float: right;
   color: var(--black);
@@ -75,6 +75,10 @@ body {
   padding: 30px 30px;
   text-decoration: none;
   font-size: 16px;
+}
+.logout-button{
+  border:none;
+  background-color: white;
 }
 
 #log {
@@ -85,7 +89,7 @@ body {
   color: var(--black);
 }
 
-.nav>.content-margin>.nav-links>a:hover {
+.nav>.content-margin>.nav-links>a:hover, .logout-button:hover {
   background-color: rgba(0, 0, 0, 0.057);
   color: var(--red);
 }
