@@ -26,7 +26,16 @@ Route::middleware('guest')->group(function () {
     // Index Route
     Route::get('/', function () {
         return view('login');
-    })->middleware('guest');
+    });
+
+    Route::get('about', function () {
+        return view('about');
+    });
+
+    Route::get('contact', function () {
+        return view('contact');
+    });
+
 
     // Sign-up Routes
     Route::get('signup', [UserController::class, 'create']);

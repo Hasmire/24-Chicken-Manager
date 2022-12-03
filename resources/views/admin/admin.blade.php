@@ -10,7 +10,7 @@
 <div class="header">
   <div class="content-margin">
       <h1>Menu Manager</h1>
-      <p></p>
+      <p>Verify and edit the current menu of the restaurant.</p>
   </div>
 </div>
 
@@ -18,22 +18,19 @@
 {{-- ADD ITEM TO MENU --}}
 <a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">+ Add Menu Item</button></a>
 
+<br>
+<x-success-message/>
 
 <div class="cards">
-  <!-- BACKEND: article will repeat depending on the # of items -->
-  <!-- NOTE: if they click the card, they will be redirected
-to the specific flavor's item.php -->
-  <!-- NOTE2: CSS only works if form is separated per card -->
-
   @if ($foods->count())
       @foreach ($foods as $food)
           <x-admin-menu-card :food="$food" />
       @endforeach
   @else
-      <p class="text-center">No posts yet. Please check back later.</p>
+      <p style="text-align: center; font-size: 30px; font-weight: 800">No food is prepared yet. Please check back later.</p>
   @endif
 </div>
 
 
-  
+
 </x-layout-admin>

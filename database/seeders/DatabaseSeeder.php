@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Doe',
             'address' => '123 Grove Street',
             'email' => 'admin@chicken.com',
-            'password' =>  bcrypt('password')
+            'password' =>  'password'
         ]);
 
         User::create([ //SAMPLE employee
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Smith',
             'address' => '123 Grove Street',
             'email' => 'employee@chicken.com',
-            'password' =>  bcrypt('password')
+            'password' =>  'password'
         ]);
 
         User::factory(13)->create();

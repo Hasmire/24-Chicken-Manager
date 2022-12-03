@@ -31,8 +31,6 @@
             <!-- CONTENT -->
             {{ $slot }}
 
-            <x-success-message/>
-
             <!-- FOOTER -->
             <x-headerfooter.footer />
         </div>
