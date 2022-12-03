@@ -1,5 +1,11 @@
-# 24 Chicken Shopping Cart
-*description*
+# Restaurant Management System
+This is a sample restaurant management system that aims to keep track of its users, transactions, and staff. This project was made in fulfillment of the requirements at our university.
+
+## To-do:
+- Remove previous cart storage
+- Adjust CSS
+- Search?
+- Pagination?
 
 ## Installation
 1. Install PHP and [Composer](https://getcomposer.org/ "Composer")
