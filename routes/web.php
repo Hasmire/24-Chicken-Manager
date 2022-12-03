@@ -47,28 +47,28 @@ Route::get('login', function () {
 Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
 
 // Menu Routes
-Route::get('menu', [FoodController::class, 'menu']);
-Route::get('menu/{food:id}', [FoodController::class, 'show']);
+Route::get('menu', [FoodController::class, 'menu'])->middleware('auth');
+Route::get('menu/{food:id}', [FoodController::class, 'show'])->middleware('auth');
 
 // End-User Checkout
-Route::get('checkout', [CheckoutController::class, 'show']);
-Route::post('add', [CheckoutController::class, 'add']);
-Route::post('remove-order', [CheckoutController::class, 'remove']);
-Route::post('place-order', [CheckoutController::class, 'place']);
+Route::get('checkout', [CheckoutController::class, 'show'])->middleware('auth');
+Route::post('add', [CheckoutController::class, 'add'])->middleware('auth');
+Route::post('remove-order', [CheckoutController::class, 'remove'])->middleware('auth');
+Route::post('place-order', [CheckoutController::class, 'place'])->middleware('auth');
 
 //Employee Dashboard Route
-Route::get('employee', [EmployeeController::class, 'show']);
-Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
-Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
-Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
-Route::post('employee/place-order', [EmployeeController::class, 'place']);
-Route::post('employee/new-order', [EmployeeController::class, 'newOrder']);
-Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
-Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
-Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
-Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
+Route::get('employee', [EmployeeController::class, 'show'])->middleware('employee');
+Route::get('employee/new-order', [EmployeeController::class, 'showNew'])->middleware('employee');
+Route::post('employee/remove-order', [EmployeeController::class, 'remove'])->middleware('employee');
+Route::post('employee/add-order', [EmployeeController::class, 'addOrder'])->middleware('employee');
+Route::post('employee/place-order', [EmployeeController::class, 'place'])->middleware('employee');
+Route::post('employee/new-order', [EmployeeController::class, 'newOrder'])->middleware('employee');
+Route::post('employee/confirm-order', [EmployeeController::class, 'confirm'])->middleware('employee');
+Route::post('employee/edit-order', [EmployeeController::class, 'getEdit'])->middleware('employee');
+Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit'])->middleware('employee');
+Route::post('employee/save-edit-order', [EmployeeController::class, 'save'])->middleware('employee');
 
 //Admin Dashboard Route
-Route::resource('adminpage', AdminController::class);
-Route::get('admin', [AdminController::class, 'index']);
-Route::get('admin-menu/{food:id}', [AdminController::class, 'editorView']);
+Route::resource('adminpage', AdminController::class)->middleware('admin');
+Route::get('admin', [AdminController::class, 'index'])->middleware('admin');
+Route::get('admin-menu/{food:id}', [AdminController::class, 'editorView'])->middleware('admin');
