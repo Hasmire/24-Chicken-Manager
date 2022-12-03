@@ -73,7 +73,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // Employee Dashboard Route
-// REFACTOR
 Route::middleware('employee')->group(function () {
     Route::get('employee', [EmployeeController::class, 'show']);
     Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
