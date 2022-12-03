@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // CHANGE ALL OF THIS LATER TO ELOQUENCE OBJECT CREATE
-        // DELETE CARBON AFTER CHANGING TO ELOQUENCE
         // Create fake Users
         User::create([ //SAMPLE admin
             'firstname' => 'John',

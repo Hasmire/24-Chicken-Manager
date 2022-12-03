@@ -15,8 +15,7 @@ class CheckoutController extends Controller
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
-
-        Cart::session($userId)->condition($c1);
+        Cart::session($userId)->clearCartConditions();
 
         return view('end-user.checkout', [
             'foods' => Cart::session($userId)->getContent(),
@@ -50,11 +49,10 @@ class CheckoutController extends Controller
 
     public function create(Request $request)
     {
-
         include(app_path() . '\Conditions.php');
         $request->validate([
             'type' => 'required|exists:order_types,id',
-            'promo' => 'exists:promos,name',
+            'promo' => 'nullable|exists:promos,name',
         ]);
 
         $userId = auth()->user()->id;
@@ -63,18 +61,26 @@ class CheckoutController extends Controller
 
             switch ($request->type) {
                 case '1':
-                    Cart::session($userId)->condition($c1);
+                    Cart::session($userId)->condition($tDine);
                     break;
                 case '2':
-                    Cart::session($userId)->condition($c2);
+                    Cart::session($userId)->condition($tTake);
                     break;
                 case '3':
-                    Cart::session($userId)->condition($c3);
+                    Cart::session($userId)->condition($tDeliv);
                     break;
             }
 
-            if ($request->promo == 'PROMO') {
-                Cart::session($userId)->condition($cpromo);
+            switch ($request->promo) {
+                case '20PESOS':
+                    Cart::session($userId)->condition($promo20);
+                    break;
+                case '30PESOS':
+                    Cart::session($userId)->condition($promo30);
+                    break;
+                case '50PESOS':
+                    Cart::session($userId)->condition($promo50);
+                    break;
             }
 
             Order::create([
