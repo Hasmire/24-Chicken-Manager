@@ -7,6 +7,10 @@
         <link href="{{ asset('css/checkout-styles.css') }}" rel="stylesheet">
     @endpush
 
+    @php
+        $user = auth()->user();
+    @endphp
+
     <div class="header">
         <div class="content-margin">
             <h1>Order Checkout</h1>
@@ -22,20 +26,20 @@
                 <h3 id="heading">Customer Information</h3>
 
                 <p id="cname-label">Customer Name</p>
-                <p id="cname-input">Juan dela Cruz</p>
+                <p id="cname-input">{{ $user->firstname." ".$user->lastname}}</p>
 
                 <br>
                 <p id="cname-label">Address</p>
-                <p id="cname-input">24 Chicken St., Brgy. Manok, Q.C. 24 Chicken St., Brgy. Manok, Q.C. 24 Chicken St.,
-                    Brgy. Manok, Q.C. 24 Chicken St., Brgy. Manok, Q.C.</p>
+                <p id="cname-input">{{ $user->address }}</p>
 
                 <br>
                 <p id="cname-label">Email Address</p>
-                <p id="cname-input">juandc@gmail.com</p>
+                <p id="cname-input">{{ $user->email }}</p>
 
                 <br>
                 <form>
-                    <input type="button" id="edit" value="Edit" onclick="location.href='update.php';">
+                    {{-- <input type="button" id="edit" value="Edit" onclick="location.href='update.php';"> --}}
+                    <input type="button" id="edit" value="Edit" onclick="location.href='edit'">
                 </form>
         </div>
 
