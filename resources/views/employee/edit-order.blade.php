@@ -105,7 +105,7 @@
                 <input id="promo" type="text" name="promo"><br>
 
                 <label id="label-total">Total </label>
-                <p1 id="total-price">₱000.00</p1><br>
+                <p id="total-price">₱000.00</p><br>
 
                 <!--
                 <a href="employee.php"><input type="button" id="delbutton" value="Cancel Order"></a>

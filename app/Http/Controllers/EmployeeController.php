@@ -116,12 +116,32 @@ class EmployeeController extends Controller
 
     public function showEdit()
     {
+        $order = null;
+
         if (session()->has('order')) {
             $order = session('order');
         }
 
+        $userId = auth()->user()->id;
+        dd(json_decode($order->conditions));
+        // foreach (json_decode($order->cart) as $parsed) {
+        //     $food = Food::find($parsed->id);
+        //     Cart::session($userId)->add(array(
+        //         'id' => $food->id,
+        //         'name' => $food->name,
+        //         'price' => $food->amount,
+        //         'quantity' => $parsed->quantity,
+        //         'attributes' => array(
+        //             'thumbnail' => $food->thumbnail,
+        //         )
+        //     ));
+        // }
+
         return view('employee.edit-order', [
-            'orders' => $order,
+            'foods' => Cart::session($userId)->getContent(),
+            'total' => Cart::session($userId)->getSubTotal(),
+            'users' => User::all(),
+            'products' => Food::all(),
         ]);
     }
 }
