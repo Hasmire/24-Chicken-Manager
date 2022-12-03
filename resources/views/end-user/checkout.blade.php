@@ -26,7 +26,7 @@
                 <h3 id="heading">Customer Information</h3>
 
                 <p id="cname-label">Customer Name</p>
-                <p id="cname-input">{{ $user->firstname." ".$user->lastname}}</p>
+                <p id="cname-input">{{ $user->firstname . ' ' . $user->lastname }}</p>
 
                 <br>
                 <p id="cname-label">Address</p>
@@ -59,13 +59,18 @@
             @endif
 
             <br>
-            <form method="POST" action="/place-order">
+            <form method="POST" action="{{ Route('checkout.create') }}">
+                @method('GET')
                 @csrf
                 <label for="type" id="form-label">Order Type</label><br>
                 <select id="type" name="type" required>
-                    <option value="1">Dine In</option>
-                    <option value="2">Takeout</option>
-                    <option value="3">Delivery</option>
+                    <option value="">Select Delivery Type...</option>
+                    <option value="1" @if (old('type') == '1') selected="selected" @endif>Dine In (+₱10)
+                    </option>
+                    <option value="2" @if (old('type') == '2') selected="selected" @endif>Takeout (+₱20)
+                    </option>
+                    <option value="3" @if (old('type') == '3') selected="selected" @endif>Delivery (+₱70)
+                    </option>
                 </select><br>
 
                 <label for="promo" id="form-label">Promo Code</label><br>
@@ -75,6 +80,7 @@
                 <p id="total-price">₱{{ $total }}</p>
 
                 <input type="hidden" name="total" value="{{ $total }}">
+                <x-error-message />
                 <br><br>
                 <input type="submit" id="place-order" name="place-order" value="Place order">
             </form>

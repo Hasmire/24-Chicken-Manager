@@ -41,8 +41,8 @@ class AdminController extends Controller
         ]);
 
         // Create user using inputs
-        $food = Food::create($request->all());      
-        
+        $food = Food::create($request->all());
+
         //Redirect to landing page if successful
         return redirect('admin')->with('success', 'Successfully Added Item');
     }

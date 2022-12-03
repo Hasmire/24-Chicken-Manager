@@ -69,15 +69,20 @@
                 <select id="type" name="user" required>
                     <option value="">Select User</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->firstname . ' ' . $user->lastname }}</option>
+                        <option value="{{ $user->id }}" @if (old('user') == '{{ $user->id }}') selected @endif>
+                            {{ $user->firstname . ' ' . $user->lastname }}</option>
                     @endforeach
                 </select><br>
 
                 <label for="type" id="label-type">Order Type </label>
                 <select id="type" name="type" required>
-                    <option value="1">Dine In</option>
-                    <option value="2">Takeout</option>
-                    <option value="3">Delivery</option>
+                    <option value="1" @if (old('type') == '1') selected="selected" @endif>Dine In (+₱10)
+                    </option>
+                    <option value="2" @if (old('type') == '2') selected="selected" @endif>Takeout (+₱20)
+                    </option>
+                    <option value="3" @if (old('type') == '3') selected="selected" @endif>Delivery (+₱70)
+                    </option>
+                    </option>
                 </select><br>
 
                 <label for="promo" id="label-type">Promo Code </label>
@@ -87,7 +92,8 @@
                 <p id="total-price">₱{{ $total }}</p><br>
 
                 <div class="buttons">
-                    <button type="submit" id="cancel-button" name="submit" value="cancel">Cancel Order</button>
+                    <a id="cancel-button" name="submit" href="/employee"
+                        style="text-align:center; font-size: 14px; text-decoration: none">Cancel Order</a>
                     <button type="submit" id="save-button" name="submit" value="save">Save</button>
                 </div>
 

@@ -16,8 +16,8 @@
         <td id="oddcol2">₱{{ $order->amount }}</td>
         <td id="evencol2">{{ strtoupper($order->status) }}</td>
 
-        <input type="hidden" name="id" value="{{ $order->id }}">
         <td id="oddcol2">
+            <input type="hidden" name="id" value="{{ $order->id }}">
             <button type="submit" id="complete-button" name="submit" value="confirm">
                 @if ($order->status == 'pending')
                     CONFIRM ORDER

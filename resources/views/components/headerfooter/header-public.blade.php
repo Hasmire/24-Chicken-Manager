@@ -19,8 +19,9 @@
         </div>
 
         <div class="nav-links">
-            <a href="contact.php">Contact</a>
-            <a href="about.php">About</a>
+            <a href="contact">Contact</a>
+            <a href="about">About</a>
+            <a href="login">Login</a>
         </div>
     </div>
 </div>

@@ -33,7 +33,7 @@
             {{ $slot }}
 
             <x-success-message/>
-
+            <x-failure-message/>
             <!-- FOOTER -->
             <x-headerfooter.footer />
         </div>

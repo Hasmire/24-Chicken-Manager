@@ -1,19 +1,19 @@
-@if(session()->has('success'))
+@if(session()->has('failure'))
     <style>
-        .flash-success{
+        .flash-failure{
             margin-top: 5px;
             text-align: center;
             width: 10rem;
-            background:green 50%;
+            background:#D62525 50%;
             color: white;
             padding: 3px;
             border-radius: 10px;
-            font-size:12px;
+            font-size:14px;
             margin:0 auto;
         }
     </style>
 
-    <div class="flash-success">
-        <p>{{ session('success') }}</p>
+    <div class="flash-failure">
+        <p>{{ session('failure') }}</p>
     </div>
 @endif

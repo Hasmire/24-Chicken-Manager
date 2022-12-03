@@ -62,7 +62,7 @@ body {
 /* ITEMS */
 .cards {
   width: 85%;
-  margin: 60px auto;
+  margin: 20px auto;
   border-radius: 5px;
 }
 
@@ -151,7 +151,7 @@ body {
 
 #checkout {
   display: block;
-  margin: 20px auto 40px auto;
+  margin: 30px auto 0px auto;
   width: 300px;
   padding: 12px 0;
   box-sizing: border-box;

@@ -1,29 +1,58 @@
 <?php
 
-$cpromo = new \Darryldecode\Cart\CartCondition(array(
-    'name' => 'PROMO',
+use App\Models\order_type;
+use App\Models\Promo;
+
+foreach (Promo::all() as $promo) {
+    $promoArr['name'][] = $promo->name;
+    $promoArr['amount'][] = $promo->amount;
+}
+
+foreach (Order_type::all() as $type) {
+    $typeArr['name'][] = $type->name;
+    $typeArr['amount'][] = $type->amount;
+}
+
+
+$promo20 = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $promoArr['name'][0],
     'type' => 'promo',
-    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-    'value' => '-50',
+    'target' => 'subtotal',
+    'value' => '-'.$promoArr['amount'][0],
 ));
 
-$c1 = new \Darryldecode\Cart\CartCondition(array(
-    'name' => 'Dine in',
-    'type' => 'order-type',
-    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-    'value' => '+10',
+$promo30 = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $promoArr['name'][1],
+    'type' => 'promo',
+    'target' => 'subtotal',
+    'value' => '-'.$promoArr['amount'][1],
 ));
 
-$c2 = new \Darryldecode\Cart\CartCondition(array(
-    'name' => 'Take-out',
-    'type' => 'order-type',
-    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-    'value' => '+15',
+$promo50 = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $promoArr['name'][2],
+    'type' => 'promo',
+    'target' => 'subtotal',
+    'value' => '-'.$promoArr['amount'][2],
 ));
 
-$c3 = new \Darryldecode\Cart\CartCondition(array(
-    'name' => 'Delivery',
+$tDine = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $typeArr['name'][0],
     'type' => 'order-type',
-    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
-    'value' => '+50',
+    'target' => 'subtotal',
+    'value' => '+'.$typeArr['amount'][0],
+));
+
+
+$tTake = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $typeArr['name'][1],
+    'type' => 'order-type',
+    'target' => 'subtotal',
+    'value' => '+'.$typeArr['amount'][1],
+));
+
+$tDeliv = new \Darryldecode\Cart\CartCondition(array(
+    'name' => $typeArr['name'][2],
+    'type' => 'order-type',
+    'target' => 'subtotal',
+    'value' => '+'.$typeArr['amount'][2],
 ));

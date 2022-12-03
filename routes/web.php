@@ -19,56 +19,75 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-//index route
-Route::get('/', function () {
-    return view('login');
-})->middleware('guest');
-
-//End user landing page
-Route::get('landing', function(){
-    return view('end-user.landing');
-})->middleware('auth');
-
-//Sign up Routes
+// User Routes
 Route::resource('users', UserController::class);
-Route::get('signup', [UserController::class, 'create'])->middleware('guest');
-Route::post('signup', [UserController::class, 'store'])->middleware('guest');
 
-//Login & Logout Routes
-Route::resource('sessions', SessionsController::class);
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
-Route::get('login', function () {
-    return view('login');
-})->name('login')->middleware('guest');
+Route::middleware('guest')->group(function () {
+    // Index Route
+    Route::get('/', function () {
+        return view('login');
+    });
+
+    Route::get('about', function () {
+        return view('about');
+    });
+
+    Route::get('contact', function () {
+        return view('contact');
+    });
 
 
-//Edit User Routes
-Route::get('edit', [UserController::class, 'edit'])->middleware('auth');
+    // Sign-up Routes
+    Route::get('signup', [UserController::class, 'create']);
+    Route::post('signup', [UserController::class, 'store']);
 
-// Menu Routes
-Route::get('menu', [FoodController::class, 'menu'])->middleware('auth');
-Route::get('menu/{food:id}', [FoodController::class, 'show'])->middleware('auth');
+    // Login Routes
+    Route::resource('sessions', SessionsController::class);
+    Route::post('login', [SessionsController::class, 'store']);
+    Route::get('login', function () {
+        return view('login');
+    })->name('login');
+});
 
-// End-User Checkout
-Route::get('checkout', [CheckoutController::class, 'show'])->middleware('auth');
-Route::post('add', [CheckoutController::class, 'add'])->middleware('auth');
-Route::post('remove-order', [CheckoutController::class, 'remove'])->middleware('auth');
-Route::post('place-order', [CheckoutController::class, 'place'])->middleware('auth');
+// Authenticated Dashboard Route
+Route::middleware('auth')->group(function () {
+    // Logout
+    Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-//Employee Dashboard Route
-Route::get('employee', [EmployeeController::class, 'show'])->middleware('employee');
-Route::get('employee/new-order', [EmployeeController::class, 'showNew'])->middleware('employee');
-Route::post('employee/remove-order', [EmployeeController::class, 'remove'])->middleware('employee');
-Route::post('employee/add-order', [EmployeeController::class, 'addOrder'])->middleware('employee');
-Route::post('employee/place-order', [EmployeeController::class, 'place'])->middleware('employee');
-Route::post('employee/new-order', [EmployeeController::class, 'newOrder'])->middleware('employee');
-Route::post('employee/confirm-order', [EmployeeController::class, 'confirm'])->middleware('employee');
-Route::post('employee/edit-order', [EmployeeController::class, 'getEdit'])->middleware('employee');
-Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit'])->middleware('employee');
-Route::post('employee/save-edit-order', [EmployeeController::class, 'save'])->middleware('employee');
+    // Landing page
+    Route::get('landing', function () {
+        return view('end-user.landing');
+    });
 
-//Admin Dashboard Route
-Route::resource('adminpage', AdminController::class)->middleware('admin');
-Route::get('admin', [AdminController::class, 'index'])->middleware('admin');
-Route::get('admin-menu/{food:id}', [AdminController::class, 'editorView'])->middleware('admin');
+    // Edit User Route
+    Route::get('edit', [UserController::class, 'edit']);
+
+    // Menu Routes
+    Route::get('menu', [FoodController::class, 'menu']);
+    Route::get('menu/{food:id}', [FoodController::class, 'show']);
+
+    // Checkout Routes
+    Route::resource('checkout', CheckoutController::class, [
+        'except' => ['show', 'edit', 'update']
+    ]);
+});
+
+// Employee Dashboard Route
+Route::middleware('employee')->group(function () {
+    Route::get('employee', [EmployeeController::class, 'show']);
+    Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
+    Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
+    Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
+    Route::post('employee/place-order', [EmployeeController::class, 'place']);
+    Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
+    Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
+    Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
+    Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
+});
+
+// Admin Dashboard Route
+Route::middleware('admin')->group(function () {
+    Route::resource('adminpage', AdminController::class);
+    Route::get('admin', [AdminController::class, 'index']);
+    Route::get('admin-menu/{food:id}', [AdminController::class, 'editorView']);
+});

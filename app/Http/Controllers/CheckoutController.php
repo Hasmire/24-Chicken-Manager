@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Cart;
 use Darryldecode\Cart\CartCondition;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
     //
-    public function show()
+    public function index()
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
-
-        Cart::session($userId)->condition($c1);
+        Cart::session($userId)->clearCartConditions();
 
         return view('end-user.checkout', [
             'foods' => Cart::session($userId)->getContent(),
@@ -25,16 +23,16 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function add()
+    public function store(Request $request)
     {
         $userId = auth()->user()->id;
 
-        $food = Food::find(request()->id);
+        $food = Food::find($request->id);
         Cart::session($userId)->add(array(
             'id' => $food->id,
             'name' => $food->name,
             'price' => $food->amount,
-            'quantity' => request()->quantity,
+            'quantity' => $request->quantity,
             'attributes' => array(
                 'thumbnail' => $food->thumbnail,
             )
@@ -42,50 +40,61 @@ class CheckoutController extends Controller
         return redirect('/menu');
     }
 
-    public function update()
-    {
-    }
-
-    public function remove()
+    public function destroy($id)
     {
         $userId = auth()->user()->id;
-        Cart::session($userId)->remove(request()->id);
+        Cart::session($userId)->remove($id);
         return back();
     }
 
-    public function place()
+    public function create(Request $request)
     {
         include(app_path() . '\Conditions.php');
-        $userId = auth()->user()->id;
-        Cart::session($userId)->clearCartConditions();
-
-        switch (request('type')) {
-            case '1':
-                Cart::session($userId)->condition($c1);
-                break;
-            case '2':
-                Cart::session($userId)->condition($c2);
-                break;
-            case '3':
-                Cart::session($userId)->condition($c3);
-                break;
-        }
-
-        if (request('promo') == 'PROMO') {
-            Cart::session($userId)->condition($cpromo);
-        }
-
-        DB::table('orders')->insert([
-            'user_id' => $userId,
-            'order_type_id' => request('type'),
-            'cart' => Cart::session($userId)->getContent(),
-            'conditions' => Cart::session($userId)->getConditions(),
-            'amount' => Cart::session($userId)->getSubTotal(),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        $request->validate([
+            'type' => 'required|exists:order_types,id',
+            'promo' => 'nullable|exists:promos,name',
         ]);
 
-        Cart::session($userId)->clear();
-        return redirect('landing')->with('success', 'Order Successfully Added!');
+        $userId = auth()->user()->id;
+        if (Cart::session($userId)->getContent()->count() > 0) {
+            Cart::session($userId)->clearCartConditions();
+
+            switch ($request->type) {
+                case '1':
+                    Cart::session($userId)->condition($tDine);
+                    break;
+                case '2':
+                    Cart::session($userId)->condition($tTake);
+                    break;
+                case '3':
+                    Cart::session($userId)->condition($tDeliv);
+                    break;
+            }
+
+            switch ($request->promo) {
+                case '20PESOS':
+                    Cart::session($userId)->condition($promo20);
+                    break;
+                case '30PESOS':
+                    Cart::session($userId)->condition($promo30);
+                    break;
+                case '50PESOS':
+                    Cart::session($userId)->condition($promo50);
+                    break;
+            }
+
+            Order::create([
+                'user_id' => $userId,
+                'order_type_id' => $request->type,
+                'cart' => Cart::session($userId)->getContent(),
+                'conditions' => Cart::session($userId)->getConditions(),
+                'amount' => Cart::session($userId)->getSubTotal(),
+            ]);
+
+            Cart::session($userId)->clear();
+            return redirect('landing')->with('success', 'Order Successfully Added!');
+        } else {
+            return redirect('landing')->with('failure', 'Your Cart is Empty!');
+        }
     }
 }

@@ -15,19 +15,15 @@
     </div>
 
     <div class="cards">
-        <!-- BACKEND: article will repeat depending on the # of items -->
-        <!-- NOTE: if they click the card, they will be redirected
-      to the specific flavor's item.php -->
-        <!-- NOTE2: CSS only works if form is separated per card -->
 
         @if ($foods->count())
             @foreach ($foods as $food)
                 <x-menu-card :food="$food" />
             @endforeach
         @else
-            <p class="text-center">No posts yet. Please check back later.</p>
+            <p style="text-align: center; font-size: 30px; font-weight: 800">No posts yet. Please check back later.</p>
         @endif
     </div>
 
-    <a href="checkout" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
+    <a href="{{ Route('checkout.index') }}" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
 </x-layout-end-user>

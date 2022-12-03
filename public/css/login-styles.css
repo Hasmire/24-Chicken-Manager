@@ -14,7 +14,7 @@ body {
   font-family: 'Inter', sans-serif;
   color: var(--black);
   background-color: var(--white2);
-  background-image: url('./images/24chicken-bg.jpg');
+  background-image: url('/images/24chicken-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.352);
