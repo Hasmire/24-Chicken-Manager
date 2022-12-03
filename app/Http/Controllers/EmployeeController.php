@@ -26,7 +26,6 @@ class EmployeeController extends Controller
     public function showNew()
     {
         $userId = auth()->user()->id;
-        Cart::session($userId)->clear();
 
         return view('employee.add-order', [
             'header' => "Add Order",
@@ -66,7 +65,7 @@ class EmployeeController extends Controller
     {
         $userId = auth()->user()->id;
 
-        if (request('submit' == "save")) {
+        if (request('submit') == "save") {
             include(app_path() . '\Conditions.php');
             Cart::session($userId)->clearCartConditions();
 
@@ -116,7 +115,7 @@ class EmployeeController extends Controller
         return back();
     }
 
-    public function showEdit()
+    public function getEdit()
     {
         $userId = auth()->user()->id;
         $order = Order::find(request('id'));
@@ -156,7 +155,11 @@ class EmployeeController extends Controller
                 Cart::session($userId)->condition($cpromo);
             }
 
+        return redirect('employee/show-edit-order/'.$order->id);
+    }
 
+    public function showEdit(Order $order) {
+        $userId = auth()->user()->id;
         return view('employee.edit-order', [
             'header' => "Order #",
             'subtitle' => "Please verify the information below and save the order.",
@@ -166,13 +169,13 @@ class EmployeeController extends Controller
             'products' => Food::all(),
             'orders' => $order,
         ]);
+
     }
 
     public function save()
     {
         $userId = auth()->user()->id;
-
-        if (request('submit' == "save")) {
+        if (request('submit') == "save") {
             include(app_path() . '\Conditions.php');
             Cart::session($userId)->clearCartConditions();
 

@@ -4,7 +4,7 @@
 
         <div class="nav-header">
             <div class="nav-title">
-                <img src="../images/24chicken-logo.png" id="logo">
+                <img src="/images/24chicken-logo.png" id="logo">
                 <p>Hello, <span id="red">{{ auth()->user()->firstname }}</span>!</p>
             </div>
         </div>
