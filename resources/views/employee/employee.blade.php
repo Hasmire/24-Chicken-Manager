@@ -11,7 +11,7 @@
     <div class="header">
         <div class="content-margin">
             <h1>Order Queue</h1>
-            <a id="add-order" href="{{ url('employee/new-order') }}">+ Add Order</a>
+            <a id="add-order" href="{{ Route('employee.indexNew') }}">+ Add Order</a>
         </div>
     </div>
 
@@ -24,17 +24,15 @@
                     @foreach ($pending as $order)
                         <x-employee-order-list :order="$order" />
                     @endforeach
-                @else
-                    <tr>
-                        <td id="oddcol2">No </td>
-                        <td id="evencol2">Pending</td>
-                        <td id="oddcol2">Orders!</td>
-                        <td id="evencol2"></td>
-                        <td id="oddcol2"></td>
-                        <td id="evencol2"></td>
-                    </tr>
-                @endif
+
             </table>
+        @else
+            </table>
+
+            <p style="font-weight: 800; font-size: 16px; text-align: center;">Sorry! Currently, there are no
+                pending orders.</p>
+
+            @endif
         </fieldset>
 
         <fieldset>
@@ -45,17 +43,16 @@
                     @foreach ($confirmed as $order)
                         <x-employee-order-list :order="$order" />
                     @endforeach
-                @else
-                    <tr>
-                        <td id="oddcol2">No </td>
-                        <td id="evencol2">Pending</td>
-                        <td id="oddcol2">Orders!</td>
-                        <td id="evencol2"></td>
-                        <td id="oddcol2"></td>
-                        <td id="evencol2"></td>
-                    </tr>
-                @endif
+
             </table>
+        @else
+            </table>
+
+            <p style="font-weight: 800; font-size: 16px; text-align: center;">Sorry! Currently, there are no confirmed
+                orders.</p>
+
+            @endif
+
         </fieldset>
 
         <fieldset>
@@ -71,15 +68,13 @@
                     @foreach ($completed as $order)
                         <x-employee-completed-list :order="$order" />
                     @endforeach
-                @else
-                    <tr>
-                        <td id="oddcol2">No </td>
-                        <td id="evencol2">Completed</td>
-                        <td id="oddcol2">Orders!</td>
-                        <td id="evencol2"></td>
-                    </tr>
-                @endif
             </table>
+        @else
+            </table>
+            <p style="font-weight: 800; font-size: 16px; text-align: center;">Sorry! Currently, there are no
+                completed orders.</p>
+
+            @endif
         </fieldset>
     </div>
 </x-layout-employee>

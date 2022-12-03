@@ -17,7 +17,7 @@
 
     <!-- ADD ITEM SECTION -->
     <div class="add-item">
-        <form action="/employee/add-order" method="POST">
+        <form action="{{ Route('employee.store') }}" method="POST">
             @csrf
             <h2 id="heading">Add Item</h2>
             <div class="row">
@@ -63,7 +63,7 @@
 
         <!-- RIGHT SECTION-->
         <div class="rightside">
-            <form action="/employee/save-edit-order" method="POST">
+            <form action="{{ Route('employee.save') }}" method="POST">
                 @csrf
                 <label id="label-type" for="user">User </label>
                 <select id="type" name="user" required>

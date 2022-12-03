@@ -40,11 +40,11 @@ class CheckoutController extends Controller
         return redirect('/menu');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         $userId = auth()->user()->id;
-        Cart::session($userId)->remove($request->id);
-        return redirect()->route('checkout.index');
+        Cart::session($userId)->remove($id);
+        return back();
     }
 
     public function create(Request $request)

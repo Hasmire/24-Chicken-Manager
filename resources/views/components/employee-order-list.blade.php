@@ -1,6 +1,7 @@
 @props(['order'])
 
-<form method="POST" action="employee/confirm-order">
+<form method="POST" action="{{ Route('employee.update', $order->id) }}">
+    @method('PATCH')
     @csrf
     <tr>
         <td id="oddcol2">{{ $order->id }}</td>
@@ -16,7 +17,6 @@
         <td id="oddcol2">₱{{ $order->amount }}</td>
         <td id="evencol2">{{ strtoupper($order->status) }}</td>
 
-        <input type="hidden" name="id" value="{{ $order->id }}">
         <td id="oddcol2">
             <button type="submit" id="complete-button" name="submit" value="confirm">
                 @if ($order->status == 'pending')
@@ -28,9 +28,9 @@
         </td>
         <td id="evencol2">
 </form>
-<form method="POST" action="employee/edit-order">
+<form method="POST" action="{{ Route('employee.edit', $order->id) }}">
+    @method('GET')
     @csrf
-    <input type="hidden" name="id" value="{{ $order->id }}">
     <div class="center">
         <button type="submit" id="submit-button" name="submit" value="edit" class="icons-lg fb-ic"
             style="border: none; background-color: transparent;"><i id="icons" class="fa fa-edit"></i>
