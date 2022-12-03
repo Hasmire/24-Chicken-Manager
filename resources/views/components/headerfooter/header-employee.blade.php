@@ -25,10 +25,6 @@
 
         <div class="nav-links">
             <a href="{{ url('employee') }}">Orders</a>
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
         </div>
     </div>
 </div>
