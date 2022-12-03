@@ -66,24 +66,16 @@ Route::middleware('auth')->group(function () {
 // Employee Dashboard Route
 // REFACTOR
 Route::middleware('employee')->group(function () {
-    Route::resource('employee', EmployeeController::class, [
-        'except' => ['destroy']
-    ]);
-    Route::get('employee/new-order', [EmployeeController::class, 'indexNew'])->name('employee.indexNew'); //indexNew
-    Route::post('employee/save-edit-order', [EmployeeController::class, 'save'])->name('employee.saveEdit'); //save
+    Route::get('employee', [EmployeeController::class, 'show']);
+    Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
+    Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
+    Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
+    Route::post('employee/place-order', [EmployeeController::class, 'place']);
+    Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
+    Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
+    Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
+    Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
 });
-
-// Route::middleware('employee')->group(function () {
-//     Route::get('employee', [EmployeeController::class, 'show']); //index
-//     Route::get('employee/new-order', [EmployeeController::class, 'showNew']); //indexNew
-//     Route::post('employee/remove-order', [EmployeeController::class, 'remove']); //destroy
-//     Route::post('employee/add-order', [EmployeeController::class, 'addOrder']); //store
-//     Route::post('employee/place-order', [EmployeeController::class, 'place']); //create
-//     Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']); //update
-//     Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']); //edit
-//     Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']); //show
-//     Route::post('employee/save-edit-order', [EmployeeController::class, 'save']); //save
-// });
 
 // Admin Dashboard Route
 Route::middleware('admin')->group(function () {

@@ -15,10 +15,6 @@
     </div>
 
     <div class="cards">
-        <!-- BACKEND: article will repeat depending on the # of items -->
-        <!-- NOTE: if they click the card, they will be redirected
-      to the specific flavor's item.php -->
-        <!-- NOTE2: CSS only works if form is separated per card -->
 
         @if ($foods->count())
             @foreach ($foods as $food)

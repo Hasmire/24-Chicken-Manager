@@ -12,7 +12,7 @@ use Darryldecode\Cart\CartCondition;
 class EmployeeController extends Controller
 {
     //
-    public function index()
+    public function show()
     {
         return view('employee.employee', [
             'pending' => Order::where('status', 'pending')->orderBy('id', 'ASC')->get(),
@@ -21,7 +21,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function indexNew()
+    public function showNew()
     {
         $userId = auth()->user()->id;
 
@@ -35,7 +35,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function addOrder(Request $request)
     {
         $userId = auth()->user()->id;
 
@@ -52,17 +52,25 @@ class EmployeeController extends Controller
         return back();
     }
 
-    public function create(Request $request)
+    public function remove()
+    {
+        $userId = auth()->user()->id;
+        Cart::session($userId)->remove(request()->id);
+        return back();
+    }
+
+    public function place(Request $request)
     {
         include(app_path() . '\Conditions.php');
-        $request->validate([
-            'type' => 'required|exists:order_types,id',
-            'promo' => 'nullable|exists:promos,name',
-        ]);
 
         $userId = auth()->user()->id;
 
         if (request('submit') == "save" && Cart::session($userId)->getContent()->count() > 0) {
+            $request->validate([
+                'type' => 'required|exists:order_types,id',
+                'promo' => 'nullable|exists:promos,name',
+            ]);
+
             Cart::session($userId)->clearCartConditions();
 
             switch ($request->type) {
@@ -98,14 +106,16 @@ class EmployeeController extends Controller
             ]);
 
             Cart::session($userId)->clear();
-            return redirect()->route('index')->with('success', 'Order Successfully Added!');
+            return redirect('employee')->with('success', 'Order Successfully Added!');
         } else {
-            return redirect('index')->with('failure', 'Your Cart is Empty!');
+            return redirect('employee')->with('failure', 'Your Cart is Empty!');
         }
     }
 
-    public function update(Order $order)
+    public function confirm()
     {
+        $order = Order::find(request('id'));
+
         if ($order->status == "pending") {
             $order->update([
                 'status' => 'confirmed',
@@ -118,9 +128,10 @@ class EmployeeController extends Controller
         return back();
     }
 
-    public function edit(Order $order)
+    public function getEdit()
     {
         $userId = auth()->user()->id;
+        $order = Order::find(request('id'));
 
         Cart::session($userId)->clear();
         foreach (json_decode($order->cart) as $parsed) {
@@ -161,10 +172,10 @@ class EmployeeController extends Controller
                 Cart::session($userId)->condition($promo50);
             }
 
-        return redirect()->route('show', $order);
+        return redirect('employee/show-edit-order/' . $order->id);
     }
 
-    public function show(Order $order)
+    public function showEdit(Order $order)
     {
         $userId = auth()->user()->id;
         return view('employee.edit-order', [
@@ -181,15 +192,15 @@ class EmployeeController extends Controller
     public function save(Request $request)
     {
         include(app_path() . '\Conditions.php');
-        $request->validate([
-            'type' => 'required|exists:order_types,id',
-            'promo' => 'nullable|exists:promos,name',
-        ]);
 
         $userId = auth()->user()->id;
 
         if (request('submit') == "save" && Cart::session($userId)->getContent()->count() > 0) {
             Cart::session($userId)->clearCartConditions();
+            $request->validate([
+                'type' => 'required|exists:order_types,id',
+                'promo' => 'nullable|exists:promos,name',
+            ]);
 
             switch ($request->type) {
                 case '1':
@@ -223,11 +234,11 @@ class EmployeeController extends Controller
                 'amount' => Cart::session($userId)->getSubTotal(),
             ]);
             Cart::session($userId)->clear();
-            return redirect()->route('index')->with('success', 'Order Successfully Added!');
+            return redirect('employee')->with('success', 'Order Successfully Edited!');
         } elseif (request('submit') != "save" || Cart::session($userId)->getContent()->count() == 0) {
             Order::find(request('id'))->delete();
             Cart::session($userId)->clear();
-            return redirect()->route('index')->with('success', 'Order Sucessfully Deleted!');
+            return redirect('employee')->with('success', 'Order Sucessfully Deleted!');
         }
     }
 }

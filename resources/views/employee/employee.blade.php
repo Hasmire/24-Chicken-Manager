@@ -10,10 +10,13 @@
     <!-- CONTENT -->
     <div class="header">
         <div class="content-margin">
+            <x-success-message />
+
             <h1>Order Queue</h1>
-            <a id="add-order" href="{{ Route('employee.indexNew') }}">+ Add Order</a>
+            <a id="add-order" href="employee/new-order">+ Add Order</a>
         </div>
     </div>
+
 
     <div class="content-margin">
         <fieldset>
