@@ -59,7 +59,8 @@
             @endif
 
             <br>
-            <form method="POST" action="/place-order">
+            <form method="POST" action="{{ Route('checkout.create') }}">
+                @method('GET')
                 @csrf
                 <label for="type" id="form-label">Order Type</label><br>
                 <select id="type" name="type" required>

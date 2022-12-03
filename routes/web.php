@@ -45,19 +45,24 @@ Route::middleware('auth')->group(function () {
     // Logout
     Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-    // End user landing page
+    // Landing page
     Route::get('landing', function () {
         return view('end-user.landing');
     });
 
-    // Edit User Routes
+    // Edit User Route
     Route::get('edit', [UserController::class, 'edit']);
 
+    // REFACTOR
     // Menu Routes
     Route::get('menu', [FoodController::class, 'menu']);
     Route::get('menu/{food:id}', [FoodController::class, 'show']);
 
-    // End-User Checkout
+    // REFACTOR
+    // Checkout
+    Route::resource('checkout', CheckoutController::class, [
+        'except' => ['']
+    ]);
     Route::get('checkout', [CheckoutController::class, 'show']);
     Route::post('add', [CheckoutController::class, 'add']);
     Route::post('remove-order', [CheckoutController::class, 'remove']);
@@ -65,6 +70,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Employee Dashboard Route
+// REFACTOR
 Route::middleware('employee')->group(function () {
     Route::get('employee', [EmployeeController::class, 'show'])->middleware('employee');
     Route::get('employee/new-order', [EmployeeController::class, 'showNew']);

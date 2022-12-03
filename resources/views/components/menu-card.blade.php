@@ -9,7 +9,6 @@
             <div class="card-content">
                 <div class="flavor">{{ $food->name }}</div>
                 <div class="price">₱{{ $food->amount }}</div>
-
             </div>
         </a>
     </article>

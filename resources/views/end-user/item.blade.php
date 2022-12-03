@@ -25,7 +25,7 @@
 
                 <div class="quantity-container">
                     <div class="quantity-content">
-                        <form method="POST" action="/add">
+                        <form method="POST" action="{{ Route('checkout.store') }}">
                             @csrf
                             <label for="quantity">Quantity</label>
                             <input type="number" name="quantity" placeholder="1" min="1" value="1"

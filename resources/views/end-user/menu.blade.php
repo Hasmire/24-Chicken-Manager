@@ -29,5 +29,5 @@
         @endif
     </div>
 
-    <a href="checkout" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
+    <a href="{{ Route('checkout.index') }}" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
 </x-layout-end-user>

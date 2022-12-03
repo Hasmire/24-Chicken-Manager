@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Cart;
 use Darryldecode\Cart\CartCondition;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
     //
-    public function show()
+    public function index()
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
@@ -25,16 +24,16 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function add()
+    public function store(Request $request)
     {
         $userId = auth()->user()->id;
 
-        $food = Food::find(request()->id);
+        $food = Food::find($request->id);
         Cart::session($userId)->add(array(
             'id' => $food->id,
             'name' => $food->name,
             'price' => $food->amount,
-            'quantity' => request()->quantity,
+            'quantity' => $request->quantity,
             'attributes' => array(
                 'thumbnail' => $food->thumbnail,
             )
@@ -42,18 +41,14 @@ class CheckoutController extends Controller
         return redirect('/menu');
     }
 
-    public function update()
-    {
-    }
-
-    public function remove()
+    public function destroy(Request $request)
     {
         $userId = auth()->user()->id;
-        Cart::session($userId)->remove(request()->id);
+        Cart::session($userId)->remove($request->id);
         return back();
     }
 
-    public function place()
+    public function create()
     {
         include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
@@ -75,14 +70,12 @@ class CheckoutController extends Controller
             Cart::session($userId)->condition($cpromo);
         }
 
-        DB::table('orders')->insert([
+        Order::create([
             'user_id' => $userId,
             'order_type_id' => request('type'),
             'cart' => Cart::session($userId)->getContent(),
             'conditions' => Cart::session($userId)->getConditions(),
             'amount' => Cart::session($userId)->getSubTotal(),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Cart::session($userId)->clear();
