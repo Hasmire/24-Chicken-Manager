@@ -175,7 +175,7 @@ class EmployeeController extends Controller
     public function save()
     {
         $userId = auth()->user()->id;
-        if (request('submit') == "save" && Cart::getContent()->count() > 0) {
+        if (request('submit') == "save" && Cart::session($userId)->getContent()->count() > 0) {
             include(app_path() . '\Conditions.php');
             Cart::session($userId)->clearCartConditions();
 
@@ -202,7 +202,7 @@ class EmployeeController extends Controller
                 'conditions' => Cart::session($userId)->getConditions(),
                 'amount' => Cart::session($userId)->getSubTotal(),
             ]);
-        } elseif (request('submit') != "save" || Cart::getContent()->count() == 0) {
+        } elseif (request('submit') != "save" || Cart::session($userId)->getContent()->count() == 0) {
             Order::find(request('id'))->delete();
         }
 

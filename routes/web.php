@@ -56,7 +56,7 @@ Route::post('add', [CheckoutController::class, 'add']);
 Route::post('remove-order', [CheckoutController::class, 'remove']);
 Route::post('place-order', [CheckoutController::class, 'place']);
 
-// Employee Order
+//Employee Dashboard Route
 Route::get('employee', [EmployeeController::class, 'show']);
 Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
 Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
@@ -67,11 +67,6 @@ Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
 Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
 Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
 Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
-
-//Employee Dashboard Route
-Route::get('employee', function () {
-    return view('employee');
-});
 
 //Admin Dashboard Route
 Route::resource('adminpage', AdminController::class);
