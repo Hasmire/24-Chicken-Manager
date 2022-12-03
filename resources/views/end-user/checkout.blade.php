@@ -77,6 +77,7 @@
                 <p id="total-price">₱{{ $total }}</p>
 
                 <input type="hidden" name="total" value="{{ $total }}">
+                <x-error-message/>
                 <br><br>
                 <input type="submit" id="place-order" name="place-order" value="Place order">
             </form>
