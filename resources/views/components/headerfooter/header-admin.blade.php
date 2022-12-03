@@ -26,7 +26,7 @@
         </div>
         
         <div class="nav-links">
-            
+    
             <a href="{{ route('adminpage.index') }}">Menu</a>
         </div>
     </div>
