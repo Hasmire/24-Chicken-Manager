@@ -62,6 +62,7 @@ Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
 Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
 Route::post('employee/place-order', [EmployeeController::class, 'place']);
 Route::post('employee/new-order', [EmployeeController::class, 'newOrder']);
+Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
 
 //Admin Dashboard Route
 Route::get('admin', function () {

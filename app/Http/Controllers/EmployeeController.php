@@ -17,21 +17,10 @@ class EmployeeController extends Controller
     public function show()
     {
         return view('employee.employee', [
-            'pending' => Order::where('status', 'pending')->latest()->get(),
-            'confirmed' => Order::where('status', 'confirmed')->latest()->get(),
-            'completed' => Order::all(),
+            'pending' => Order::where('status', 'pending')->orderBy('id', 'ASC')->get(),
+            'confirmed' => Order::where('status', 'confirmed')->orderBy('id', 'ASC')->get(),
+            'completed' => Order::where('status', 'completed')->orderBy('id', 'ASC')->get(),
         ]);
-        /*
-        include(app_path() . '\Conditions.php');
-        $userId = auth()->user()->id;
-
-        Cart::session($userId)->condition($c1);
-
-        return view('end-user.checkout', [
-            'foods' => Cart::session($userId)->getContent(),
-            'total' => Cart::session($userId)->getSubTotal(),
-        ]);
-        */
     }
 
     public function showNew()
@@ -103,7 +92,29 @@ class EmployeeController extends Controller
         ]);
 
         Cart::session($userId)->clear();
-        return back();
+        return redirect('employee');
     }
 
+    public function confirm()
+    {
+        $order = Order::find(request('id'));
+        if (request('submit') == "confirm") {
+            if ($order->status == "pending") {
+                $order->update([
+                    'status' => 'confirmed',
+                ]);
+            } elseif ($order->status == "confirmed") {
+                $order->update([
+                    'status' => 'completed',
+                ]);
+            }
+            return back();
+        }
+
+        elseif (request('submit') == "edit") {
+            return view( ,[
+                'order' => $oder,
+            ]);
+        }
+    }
 }

@@ -16,51 +16,47 @@
     </div>
 
     <div class="content-margin">
-        <form action="confirm" method="POST">
-            <fieldset>
-                <legend>Confirm Order</legend>
-                <table>
-                    <x-employee-header-table />
-                    @if ($pending->count())
-                        @foreach ($pending as $order)
-                            <x-employee-order-list :order="$order" />
-                        @endforeach
-                    @else
-                        <tr>
-                            <td id="oddcol2">No </td>
-                            <td id="evencol2">Pending</td>
-                            <td id="oddcol2">Orders!</td>
-                        </tr>
-                    @endif
-                </table>
-            </fieldset>
-        </form>
-
-        <form action="complete" method="POST">
-            <fieldset>
-                <legend>Pending Completion</legend>
-                <table>
-                    <x-employee-header-table />
-
+        <fieldset>
+            <legend>Confirm Order</legend>
+            <table>
+                <x-employee-header-table />
+                @if ($pending->count())
+                    @foreach ($pending as $order)
+                        <x-employee-order-list :order="$order" />
+                    @endforeach
+                @else
                     <tr>
-                        <td id="oddcol2">23</td>
-                        <td id="evencol2">DINE-IN</td>
-                        <td id="oddcol2">₱ 670.00</td>
-                        <td id="evencol2">CONFIRMED</td>
-                        <td id="oddcol2">
-                            <button type="submit" id="complete-button" formaction="employee.php">COMPLETE
-                                ORDER</button>
-                        </td>
-                        <td id="evencol2">
-                            <div class="center">
-                                <a href="edit-order.php" class="icons-lg fb-ic"><i id="icons"
-                                        class="fa fa-edit"></i></a>
-                            </div>
-                        </td>
+                        <td id="oddcol2">No </td>
+                        <td id="evencol2">Pending</td>
+                        <td id="oddcol2">Orders!</td>
+                        <td id="evencol2"></td>
+                        <td id="oddcol2"></td>
+                        <td id="evencol2"></td>
                     </tr>
-                </table>
-            </fieldset>
-        </form>
+                @endif
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Pending Completion</legend>
+            <table>
+                <x-employee-header-table />
+                @if ($confirmed->count())
+                    @foreach ($confirmed as $order)
+                        <x-employee-order-list :order="$order" />
+                    @endforeach
+                @else
+                    <tr>
+                        <td id="oddcol2">No </td>
+                        <td id="evencol2">Pending</td>
+                        <td id="oddcol2">Orders!</td>
+                        <td id="evencol2"></td>
+                        <td id="oddcol2"></td>
+                        <td id="evencol2"></td>
+                    </tr>
+                @endif
+            </table>
+        </fieldset>
 
         <fieldset>
             <legend>Recently Completed Orders</legend>
@@ -71,13 +67,19 @@
                     <th id="oddcol">Amount</th>
                     <th id="evencol">Status</th>
                 </tr>
-
-                <tr>
-                    <td id="oddcol2">16</td>
-                    <td id="evencol2">DINE-IN</td>
-                    <td id="oddcol2">₱ 430.00</td>
-                    <td id="evencol2">COMPLETED</td>
-                </tr>
+                @if ($completed->count())
+                    @foreach ($completed as $order)
+                        <x-employee-completed-list :order="$order" />
+                    @endforeach
+                @else
+                    <tr>
+                        <td id="oddcol2">No </td>
+                        <td id="evencol2">Completed</td>
+                        <td id="oddcol2">Orders!</td>
+                        <td id="evencol2"></td>
+                    </tr>
+                @endif
             </table>
         </fieldset>
+    </div>
 </x-layout-employee>
