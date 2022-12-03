@@ -8,7 +8,7 @@ $cpromo = new \Darryldecode\Cart\CartCondition(array(
 ));
 
 $c1 = new \Darryldecode\Cart\CartCondition(array(
-    'name' => 'Dine in',
+    'name' => 'Dine-in',
     'type' => 'order-type',
     'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
     'value' => '+10',
