@@ -10,6 +10,7 @@
             <div class="nav-title">
                 {{-- <img src="../images/24chicken-logo.png" id="logo"> --}}
                 <img src="{{ asset('images/24chicken-logo.png') }}" id="logo">
+                <p>Hello, <span id="red">{{ auth()->user()->firstname }}</span>!</p>
             </div>
             
         </div>
@@ -25,10 +26,8 @@
         </div>
         
         <div class="nav-links">
-            
+    
             <a href="{{ route('adminpage.index') }}">Menu</a>
-            <a href="user-list.php">Users</a>
-            <a href="admin-employee.php">Employee</a>
         </div>
     </div>
     
