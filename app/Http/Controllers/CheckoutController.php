@@ -86,6 +86,6 @@ class CheckoutController extends Controller
         ]);
 
         Cart::session($userId)->clear();
-        return redirect('/employee');
+        return redirect('landing')->with('success', 'Order Successfully Added!');
     }
 }
