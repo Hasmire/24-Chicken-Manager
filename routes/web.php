@@ -61,12 +61,8 @@ Route::middleware('auth')->group(function () {
     // REFACTOR
     // Checkout
     Route::resource('checkout', CheckoutController::class, [
-        'except' => ['']
+        'except' => ['show', 'edit', 'update']
     ]);
-    Route::get('checkout', [CheckoutController::class, 'show']);
-    Route::post('add', [CheckoutController::class, 'add']);
-    Route::post('remove-order', [CheckoutController::class, 'remove']);
-    Route::post('place-order', [CheckoutController::class, 'place']);
 });
 
 // Employee Dashboard Route

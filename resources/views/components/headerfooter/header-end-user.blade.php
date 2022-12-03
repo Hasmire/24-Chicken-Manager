@@ -26,8 +26,8 @@
         <div class="nav-links">
             <a href="edit">Account</a>
             <a href="menu">Menu</a>
-            <a href="/">Home</a>
+            <a href="landing">Home</a>
         </div>
-        
+
     </div>
 </div>

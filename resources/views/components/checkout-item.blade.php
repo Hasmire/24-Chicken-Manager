@@ -1,6 +1,6 @@
 @props(['food'])
 
-<form method="POST" action="{{ Route('checkout.destroy') }}">\
+<form method="POST" action="{{ Route('checkout.destroy', $food->id) }}">
     @method('DELETE')
     @csrf
     <div class="item">
