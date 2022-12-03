@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionsController;
@@ -67,8 +68,12 @@ Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
 Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
 Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
 
+//Employee Dashboard Route
+Route::get('employee', function () {
+    return view('employee');
+});
 
 //Admin Dashboard Route
-Route::get('admin', function () {
-    return view('admin');
-});
+Route::resource('adminpage', AdminController::class);
+Route::get('admin', [AdminController::class, 'index']);
+Route::get('admin-menu/{food:id}', [AdminController::class, 'editorView']);
