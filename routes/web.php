@@ -63,7 +63,8 @@ Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
 Route::post('employee/place-order', [EmployeeController::class, 'place']);
 Route::post('employee/new-order', [EmployeeController::class, 'newOrder']);
 Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
-Route::get('employee/edit-order', [EmployeeController::class, 'showEdit']);
+Route::post('employee/edit-order', [EmployeeController::class, 'showEdit']);
+Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
 
 
 //Admin Dashboard Route

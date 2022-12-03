@@ -26,8 +26,11 @@ class EmployeeController extends Controller
     public function showNew()
     {
         $userId = auth()->user()->id;
+        Cart::session($userId)->clear();
 
         return view('employee.add-order', [
+            'header' => "Add Order",
+            'subtitle' => "Add items to a new order.",
             'foods' => Cart::session($userId)->getContent(),
             'total' => Cart::session($userId)->getSubTotal(),
             'users' => User::all(),
@@ -61,35 +64,38 @@ class EmployeeController extends Controller
 
     public function place()
     {
-        include(app_path() . '\Conditions.php');
         $userId = auth()->user()->id;
-        Cart::session($userId)->clearCartConditions();
 
-        switch (request('type')) {
-            case '1':
-                Cart::session($userId)->condition($c1);
-                break;
-            case '2':
-                Cart::session($userId)->condition($c2);
-                break;
-            case '3':
-                Cart::session($userId)->condition($c3);
-                break;
+        if (request('submit' == "save")) {
+            include(app_path() . '\Conditions.php');
+            Cart::session($userId)->clearCartConditions();
+
+            switch (request('type')) {
+                case '1':
+                    Cart::session($userId)->condition($c1);
+                    break;
+                case '2':
+                    Cart::session($userId)->condition($c2);
+                    break;
+                case '3':
+                    Cart::session($userId)->condition($c3);
+                    break;
+            }
+
+            if (request('promo') == 'PROMO') {
+                Cart::session($userId)->condition($cpromo);
+            }
+
+            DB::table('orders')->insert([
+                'user_id' => request('user'),
+                'order_type_id' => request('type'),
+                'cart' => Cart::session($userId)->getContent(),
+                'conditions' => Cart::session($userId)->getConditions(),
+                'amount' => Cart::session($userId)->getSubTotal(),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
         }
-
-        if (request('promo') == 'PROMO') {
-            Cart::session($userId)->condition($cpromo);
-        }
-
-        DB::table('orders')->insert([
-            'user_id' => request('user'),
-            'order_type_id' => request('type'),
-            'cart' => Cart::session($userId)->getContent(),
-            'conditions' => Cart::session($userId)->getConditions(),
-            'amount' => Cart::session($userId)->getSubTotal(),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
 
         Cart::session($userId)->clear();
         return redirect('employee');
@@ -98,50 +104,106 @@ class EmployeeController extends Controller
     public function confirm()
     {
         $order = Order::find(request('id'));
-        if (request('submit') == "confirm") {
-            if ($order->status == "pending") {
-                $order->update([
-                    'status' => 'confirmed',
-                ]);
-            } elseif ($order->status == "confirmed") {
-                $order->update([
-                    'status' => 'completed',
-                ]);
-            }
-            return back();
-        } elseif (request('submit') == "edit") {
-            return redirect('employee/edit-order')->with('order', $order);
+        if ($order->status == "pending") {
+            $order->update([
+                'status' => 'confirmed',
+            ]);
+        } elseif ($order->status == "confirmed") {
+            $order->update([
+                'status' => 'completed',
+            ]);
         }
+        return back();
     }
 
     public function showEdit()
     {
-        $order = null;
+        $userId = auth()->user()->id;
+        $order = Order::find(request('id'));
 
-        if (session()->has('order')) {
-            $order = session('order');
+        Cart::session($userId)->clear();
+        foreach (json_decode($order->cart) as $parsed) {
+            $food = Food::find($parsed->id);
+            Cart::session($userId)->add(array(
+                'id' => $food->id,
+                'name' => $food->name,
+                'price' => $food->amount,
+                'quantity' => $parsed->quantity,
+                'attributes' => array(
+                    'thumbnail' => $food->thumbnail,
+                )
+            ));
         }
 
-        $userId = auth()->user()->id;
-        dd(json_decode($order->conditions));
-        // foreach (json_decode($order->cart) as $parsed) {
-        //     $food = Food::find($parsed->id);
-        //     Cart::session($userId)->add(array(
-        //         'id' => $food->id,
-        //         'name' => $food->name,
-        //         'price' => $food->amount,
-        //         'quantity' => $parsed->quantity,
-        //         'attributes' => array(
-        //             'thumbnail' => $food->thumbnail,
-        //         )
-        //     ));
-        // }
+        include(app_path() . '\Conditions.php');
+        Cart::session($userId)->clearCartConditions();
+
+        $arr = array_keys((array) json_decode($order->conditions));
+        switch ($arr[0]) {
+            case 'Dine in':
+                Cart::session($userId)->condition($c1);
+                break;
+            case 'Take-out':
+                Cart::session($userId)->condition($c2);
+                break;
+            case 'Delivery':
+                Cart::session($userId)->condition($c3);
+                break;
+        }
+
+        if (count($arr) > 1)
+            if ($arr[1] == 'PROMO') {
+                Cart::session($userId)->condition($cpromo);
+            }
+
 
         return view('employee.edit-order', [
+            'header' => "Order #",
+            'subtitle' => "Please verify the information below and save the order.",
             'foods' => Cart::session($userId)->getContent(),
             'total' => Cart::session($userId)->getSubTotal(),
             'users' => User::all(),
             'products' => Food::all(),
+            'orders' => $order,
         ]);
+    }
+
+    public function save()
+    {
+        $userId = auth()->user()->id;
+
+        if (request('submit' == "save")) {
+            include(app_path() . '\Conditions.php');
+            Cart::session($userId)->clearCartConditions();
+
+            switch (request('type')) {
+                case '1':
+                    Cart::session($userId)->condition($c1);
+                    break;
+                case '2':
+                    Cart::session($userId)->condition($c2);
+                    break;
+                case '3':
+                    Cart::session($userId)->condition($c3);
+                    break;
+            }
+
+            if (request('promo') == 'PROMO') {
+                Cart::session($userId)->condition($cpromo);
+            }
+
+            Order::find(request('id'))->update([
+                'user_id' => request('user'),
+                'order_type_id' => request('type'),
+                'cart' => Cart::session($userId)->getContent(),
+                'conditions' => Cart::session($userId)->getConditions(),
+                'amount' => Cart::session($userId)->getSubTotal(),
+            ]);
+        } else {
+            Order::find(request('id'))->delete();
+        }
+
+        Cart::session($userId)->clear();
+        return redirect('employee');
     }
 }

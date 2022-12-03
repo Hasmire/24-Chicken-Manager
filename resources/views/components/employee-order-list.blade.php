@@ -27,10 +27,14 @@
             </button>
         </td>
         <td id="evencol2">
-            <div class="center">
-                <button type="submit" id="submit-button" name="submit" value="edit" class="icons-lg fb-ic"
-                    style="border: none; background-color: transparent;"><i id="icons" class="fa fa-edit"></i>
-            </div>
-        </td>
+</form>
+<form method="POST" action="employee/edit-order">
+    @csrf
+    <input type="hidden" name="id" value="{{ $order->id }}">
+    <div class="center">
+        <button type="submit" id="submit-button" name="submit" value="edit" class="icons-lg fb-ic"
+            style="border: none; background-color: transparent;"><i id="icons" class="fa fa-edit"></i>
+    </div>
+    </td>
     </tr>
 </form>

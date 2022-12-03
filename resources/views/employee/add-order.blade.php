@@ -10,8 +10,8 @@
     <!-- CONTENT -->
     <div class="header">
         <div class="content-margin">
-            <h1>Add Order</h1>
-            <p>Add items to a new order.</p>
+            <h1>{{ $header }}</h1>
+            <p>{{ $subtitle }}</p>
         </div>
     </div>
 
