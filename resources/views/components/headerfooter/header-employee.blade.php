@@ -8,7 +8,7 @@
 
         <div class="nav-header">
             <div class="nav-title">
-                <img src="../images/24chicken-logo.png" id="logo">
+                <img src="/images/24chicken-logo.png" id="logo">
                 <p>Hello, <span id="red">{{ auth()->user()->firstname }}</span>!</p>
             </div>
         </div>
@@ -24,8 +24,7 @@
         </div>
 
         <div class="nav-links">
-            
-            <a href="order.php">Orders</a>
+            <a href="{{ url('employee') }}">Orders</a>
             <form action="/logout" method="post">
                 @csrf
                 <button type="submit">Logout</button>

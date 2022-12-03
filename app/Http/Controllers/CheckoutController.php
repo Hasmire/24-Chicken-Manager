@@ -86,6 +86,6 @@ class CheckoutController extends Controller
         ]);
 
         Cart::session($userId)->clear();
-        return back();
+        return redirect('/employee');
     }
 }

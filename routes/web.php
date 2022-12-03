@@ -57,10 +57,16 @@ Route::post('remove-order', [CheckoutController::class, 'remove']);
 Route::post('place-order', [CheckoutController::class, 'place']);
 
 // Employee Order
-Route::get('employee/order', [EmployeeController::class, 'show']);
-Route::get('employee/neworder', [EmployeeController::class, 'showNew']);
-Route::post('employee/addorder', [EmployeeController::class, 'addOrder']);
-Route::post('employee/neworder', [EmployeeController::class, 'newOrder']);
+Route::get('employee', [EmployeeController::class, 'show']);
+Route::get('employee/new-order', [EmployeeController::class, 'showNew']);
+Route::post('employee/remove-order', [EmployeeController::class, 'remove']);
+Route::post('employee/add-order', [EmployeeController::class, 'addOrder']);
+Route::post('employee/place-order', [EmployeeController::class, 'place']);
+Route::post('employee/new-order', [EmployeeController::class, 'newOrder']);
+Route::post('employee/confirm-order', [EmployeeController::class, 'confirm']);
+Route::post('employee/edit-order', [EmployeeController::class, 'getEdit']);
+Route::get('employee/show-edit-order/{order:id}', [EmployeeController::class, 'showEdit']);
+Route::post('employee/save-edit-order', [EmployeeController::class, 'save']);
 
 //Employee Dashboard Route
 Route::get('employee', function () {

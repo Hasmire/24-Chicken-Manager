@@ -10,14 +10,14 @@
     <!-- CONTENT -->
     <div class="header">
         <div class="content-margin">
-            <h1>{{ $header }}</h1>
+            <h1>{{ $header . $orders->id }}</h1>
             <p>{{ $subtitle }}</p>
         </div>
     </div>
 
     <!-- ADD ITEM SECTION -->
     <div class="add-item">
-        <form action="add-order" method="POST">
+        <form action="/employee/add-order" method="POST">
             @csrf
             <h2 id="heading">Add Item</h2>
             <div class="row">
@@ -63,21 +63,26 @@
 
         <!-- RIGHT SECTION-->
         <div class="rightside">
-            <form action="place-order" method="POST">
+            <form action="/employee/save-edit-order" method="POST">
                 @csrf
                 <label id="label-type" for="user">User </label>
                 <select id="type" name="user" required>
                     <option value="">Select User</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->firstname . ' ' . $user->lastname }}</option>
+                        @if ($user->id == $orders->user_id)
+                            <option value="{{ $user->id }}" selected>{{ $user->firstname . ' ' . $user->lastname }}
+                            </option>
+                        @else
+                            <option value="{{ $user->id }}">{{ $user->firstname . ' ' . $user->lastname }}</option>
+                        @endif
                     @endforeach
                 </select><br>
 
                 <label for="type" id="label-type">Order Type </label>
                 <select id="type" name="type" required>
-                    <option value="1">Dine In</option>
-                    <option value="2">Takeout</option>
-                    <option value="3">Delivery</option>
+                    <option value="1" @if ($orders->order_type_id == 1) selected @endif>Dine In</option>
+                    <option value="2" @if ($orders->order_type_id == 2) selected @endif>Takeout</option>
+                    <option value="3" @if ($orders->order_type_id == 3) selected @endif>Delivery</option>
                 </select><br>
 
                 <label for="promo" id="label-type">Promo Code </label>
@@ -86,11 +91,11 @@
                 <label id="label-total">Total </label>
                 <p id="total-price">₱{{ $total }}</p><br>
 
+                <input type="hidden" name="id" value="{{ $orders->id }}">
                 <div class="buttons">
-                    <button type="submit" id="cancel-button" name="submit" value="cancel">Cancel Order</button>
+                    <button type="submit" id="cancel-button" name="submit" value="delete">Delete Order</button>
                     <button type="submit" id="save-button" name="submit" value="save">Save</button>
                 </div>
-
             </form>
         </div>
     </div>
