@@ -11,7 +11,7 @@ class FoodController extends Controller
     public function menu()
     {
         return view('end-user.menu', [
-            'foods' => Food::latest()->filter(request(['search']))->get()
+            'foods' => Food::latest()->filter(request(['search']))->paginate(4)
         ]);
     }
 

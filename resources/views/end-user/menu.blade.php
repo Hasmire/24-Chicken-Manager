@@ -16,7 +16,8 @@
 
     <div class="search">
         <form method="GET" action="menu">
-            <input type="text" name="search" placeholder="Search for something!" class="search-box" value="{{ request('search') }}">
+            <input type="text" name="search" placeholder="Search for something!" class="search-box"
+                value="{{ request('search') }}">
             <button type="submit" class="search-button">
                 <i class="fa fa-arrow-circle-o-right fa-2x"></i>
             </button>
@@ -34,6 +35,8 @@
             <p style="text-align: center; font-size: 30px; font-weight: 800">No posts yet. Please check back later.</p>
         @endif
     </div>
+
+    {{ $foods->links() }}
 
     <a href="{{ Route('checkout.index') }}" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
 </x-layout-end-user>
