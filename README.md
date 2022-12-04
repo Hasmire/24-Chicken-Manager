@@ -1,4 +1,4 @@
-# Restaurant Management System
+# 24 Chicken Manager
 This is a sample restaurant management system that aims to keep track of its users, transactions, and staff. This project was made in fulfillment of the requirements at our university.
 
 ## Installation
