@@ -1,13 +1,5 @@
 @if ($paginator->hasPages())
-    <style>
-        .container {
-            display: flex;
-            justify-items: center;
-            justify-content: space-between
-        }
-    </style>
-
-    <nav class="container">
+    <nav>
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
@@ -16,8 +8,7 @@
                 </li>
             @else
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                        aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
                 </li>
             @endif
 

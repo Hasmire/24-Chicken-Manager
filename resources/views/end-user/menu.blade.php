@@ -36,7 +36,7 @@
         @endif
     </div>
 
-    {{ $foods->links() }}
+    {{ $foods->links('vendor.pagination.simple-default') }}
 
     <a href="{{ Route('checkout.index') }}" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
 </x-layout-end-user>
