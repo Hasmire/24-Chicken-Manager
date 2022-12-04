@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'password' =>  'password'
         ]);
 
-        User::factory(13)->create();
+        User::factory(30)->create();
 
         // Create employees from first 5 users
         Employee::create([
@@ -130,6 +130,76 @@ class DatabaseSeeder extends Seeder
             'name' => '24 Cheddar',
             'description' => fake()->paragraph(8),
             'amount' => 125,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Cajun Fries',
+            'description' => fake()->paragraph(8),
+            'amount' => 75,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Extra Rice',
+            'description' => fake()->paragraph(8),
+            'amount' => 20,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Extra Sauce',
+            'description' => fake()->paragraph(8),
+            'amount' => 45,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Softdrinks in a can',
+            'description' => fake()->paragraph(8),
+            'amount' => 50,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Mineral Water',
+            'description' => fake()->paragraph(8),
+            'amount' => 25,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Garlic',
+            'description' => fake()->paragraph(8),
+            'amount' => 20,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Caramelized Onions',
+            'description' => fake()->paragraph(8),
+            'amount' => 45,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Kimchi',
+            'description' => fake()->paragraph(8),
+            'amount' => 45,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Kimchi Rice',
+            'description' => fake()->paragraph(8),
+            'amount' => 125,
+            'thumbnail' => '/images/24chicken-item-sample.jpg',
+        ]);
+
+        Food::create([
+            'name' => 'Coke 1.5L',
+            'description' => fake()->paragraph(8),
+            'amount' => 98,
             'thumbnail' => '/images/24chicken-item-sample.jpg',
         ]);
 
