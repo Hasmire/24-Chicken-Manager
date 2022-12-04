@@ -15,7 +15,7 @@
     </div>
 
     <div class="functions">
-        <x-search />
+        <x-search route="menu"/>
         {{ $foods->links('vendor.pagination.simple-default') }}
     </div>
 

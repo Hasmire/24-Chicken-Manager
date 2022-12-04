@@ -17,7 +17,7 @@
     <x-success-message />
 
     <div class="functions">
-        <x-search />
+        <x-search route="admin"/>
         {{ $foods->links('vendor.pagination.simple-default') }}
     </div>
 

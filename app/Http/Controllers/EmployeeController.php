@@ -15,6 +15,9 @@ class EmployeeController extends Controller
     //
     public function show()
     {
+        $userId = auth()->user()->id;
+        Cart::session($userId)->clear();
+
         return view('employee.employee', [
             'pending' => Order::where('status', 'pending')->orderBy('id', 'ASC')->get(),
             'confirmed' => Order::where('status', 'confirmed')->orderBy('id', 'ASC')->get(),
@@ -58,37 +61,6 @@ class EmployeeController extends Controller
         ));
     }
 
-    public function addOrderType($param, $id)
-    {
-        include(app_path() . '\Conditions.php');
-        switch ($param->type) {
-            case '1':
-                Cart::session($id)->condition($tDine);
-                break;
-            case '2':
-                Cart::session($id)->condition($tTake);
-                break;
-            case '3':
-                Cart::session($id)->condition($tDeliv);
-                break;
-        }
-    }
-
-    public function addPromo($param, $id)
-    {
-        include(app_path() . '\Conditions.php');
-        switch ($param->promo) {
-            case '20PESOS':
-                Cart::session($id)->condition($promo20);
-                break;
-            case '30PESOS':
-                Cart::session($id)->condition($promo30);
-                break;
-            case '50PESOS':
-                Cart::session($id)->condition($promo50);
-                break;
-        }
-    }
     public function remove()
     {
         $userId = auth()->user()->id;
@@ -210,6 +182,38 @@ class EmployeeController extends Controller
             Order::find(request('id'))->delete();
             Cart::session($userId)->clear();
             return redirect('employee')->with('success', 'Order Sucessfully Deleted!');
+        }
+    }
+
+    public function addOrderType($param, $id)
+    {
+        include(app_path() . '\Conditions.php');
+        switch (isset($param->type)) {
+            case '1':
+                Cart::session($id)->condition($tDine);
+                break;
+            case '2':
+                Cart::session($id)->condition($tTake);
+                break;
+            case '3':
+                Cart::session($id)->condition($tDeliv);
+                break;
+        }
+    }
+
+    public function addPromo($param, $id)
+    {
+        include(app_path() . '\Conditions.php');
+        switch (isset($param->promo)) {
+            case '20PESOS':
+                Cart::session($id)->condition($promo20);
+                break;
+            case '30PESOS':
+                Cart::session($id)->condition($promo30);
+                break;
+            case '50PESOS':
+                Cart::session($id)->condition($promo50);
+                break;
         }
     }
 }
