@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.admin', [
-            'foods' => Food::latest()->filter(request(['search']))->simplePaginate(10)
+            'foods' => Food::oldest()->filter(request(['search']))->simplePaginate(10)
         ]);
     }
 
