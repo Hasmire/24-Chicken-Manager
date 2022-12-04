@@ -1,36 +1,42 @@
 <x-layout-admin>
-  @push('title')
-      <title>Admin Dashboard</title>
-  @endpush
+    @push('title')
+        <title>Admin Dashboard</title>
+    @endpush
 
-  @push('styles')
-  <link href="{{ asset('css/menu-styles.css') }}" rel="stylesheet">
-@endpush
+    @push('styles')
+        <link href="{{ asset('css/menu-styles.css') }}" rel="stylesheet">
+    @endpush
 
-<div class="header">
-  <div class="content-margin">
-      <h1>Menu Manager</h1>
-      <p>Verify and edit the current menu of the restaurant.</p>
-  </div>
-</div>
+    <div class="header">
+        <div class="content-margin">
+            <h1>Menu Manager</h1>
+            <p>Verify and edit the current menu of the restaurant.</p>
+        </div>
+    </div>
 
+    <x-success-message />
 
-{{-- ADD ITEM TO MENU --}}
-<a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">+ Add Menu Item</button></a>
+    <div class="functions">
+        <x-search />
+        {{ $foods->links('vendor.pagination.simple-default') }}
+    </div>
 
-<br>
-<x-success-message/>
+    <div class="cards">
+        @if ($foods->count())
+            @foreach ($foods as $food)
+                <x-admin-menu-card :food="$food" />
+            @endforeach
+        @else
+            <p style="text-align: center; font-size: 30px; font-weight: 800">No food is prepared yet. Please check back
+                later.</p>
+        @endif
+    </div>
 
-<div class="cards">
-  @if ($foods->count())
-      @foreach ($foods as $food)
-          <x-admin-menu-card :food="$food" />
-      @endforeach
-  @else
-      <p style="text-align: center; font-size: 30px; font-weight: 800">No food is prepared yet. Please check back later.</p>
-  @endif
-</div>
+    {{-- ADD ITEM TO MENU --}}
+    <a href="{{ Route('adminpage.create') }}" style="text-decoration:none;"><button id="checkout">+ Add Menu
+            Item</button></a>
 
+    <br>
 
 
 </x-layout-admin>

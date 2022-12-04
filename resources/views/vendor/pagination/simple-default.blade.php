@@ -1,8 +1,6 @@
 <style>
     .pagination {
         display: flex;
-        justify-content: center;
-        align-content: center;
         color: var(--black);
         list-style: none;
         padding: 0;

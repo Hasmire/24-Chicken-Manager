@@ -11,15 +11,18 @@ class Order extends Model
 
     protected $guarded = [];
 
-    public function user() {
+    public function user()
+    {
         return $this->hasOne(User::class);
     }
 
-    public function order_type() {
+    public function order_type()
+    {
         return $this->hasOne(Order_type::class);
     }
 
-    public function promo() {
+    public function promo()
+    {
         return $this->hasOne(Promo::class);
     }
 }

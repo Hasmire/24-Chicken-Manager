@@ -125,29 +125,23 @@ body {
     opacity: 0;
 }
 
-.search {
+.functions {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+}
+
+.search {
     margin-top: 20px;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-box {
     font-family: "Inter", sans-serif;
-    font-size: 22px;
+    font-size: 19px;
+    width: 95%;
     border-radius: 10px;
-}
-
-.search-button {
-    border: none;
-    margin-left: -40px;
-    background: none;
-    color: var(--black);
-}
-
-.search-button:hover {
-    color: var(--red);
 }
 
 /* Grid with Flex */

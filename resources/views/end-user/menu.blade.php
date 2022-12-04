@@ -14,16 +14,10 @@
         </div>
     </div>
 
-    <div class="search">
-        <form method="GET" action="menu">
-            <input type="text" name="search" placeholder="Search for something!" class="search-box"
-                value="{{ request('search') }}">
-            <button type="submit" class="search-button">
-                <i class="fa fa-arrow-circle-o-right fa-2x"></i>
-            </button>
-        </form>
+    <div class="functions">
+        <x-search />
+        {{ $foods->links('vendor.pagination.simple-default') }}
     </div>
-
 
     <div class="cards">
 
@@ -36,7 +30,6 @@
         @endif
     </div>
 
-    {{ $foods->links('vendor.pagination.simple-default') }}
 
     <a href="{{ Route('checkout.index') }}" style="text-decoration:none;"><button id="checkout">Checkout</button></a>
 </x-layout-end-user>

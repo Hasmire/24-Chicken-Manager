@@ -55,7 +55,7 @@ body {
 
   background-color: var(--white);
   width: 400px;
-  height: 390px;
+  height: 420px;
   border-radius: 10px;
   -webkit-filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
