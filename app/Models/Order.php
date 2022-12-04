@@ -13,16 +13,11 @@ class Order extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id');
     }
 
     public function order_type()
     {
-        return $this->hasMany(Order_type::class);
-    }
-
-    public function promo()
-    {
-        return $this->hasMany(Promo::class);
+        return $this->hasOne(Order_type::class);
     }
 }

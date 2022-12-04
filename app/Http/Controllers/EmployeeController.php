@@ -40,19 +40,55 @@ class EmployeeController extends Controller
     {
         $userId = auth()->user()->id;
 
-        $food = Food::find($request->id);
-        Cart::session($userId)->add(array(
+        $this->addtoCart($request, $userId);
+        return back();
+    }
+
+    public function addtoCart($param, $id)
+    {
+        $food = Food::find($param->id);
+        Cart::session($id)->add(array(
             'id' => $food->id,
             'name' => $food->name,
             'price' => $food->amount,
-            'quantity' => $request->quantity,
+            'quantity' => $param->quantity,
             'attributes' => array(
                 'thumbnail' => $food->thumbnail,
             )
         ));
-        return back();
     }
 
+    public function addOrderType($param, $id)
+    {
+        include(app_path() . '\Conditions.php');
+        switch ($param->type) {
+            case '1':
+                Cart::session($id)->condition($tDine);
+                break;
+            case '2':
+                Cart::session($id)->condition($tTake);
+                break;
+            case '3':
+                Cart::session($id)->condition($tDeliv);
+                break;
+        }
+    }
+
+    public function addPromo($param, $id)
+    {
+        include(app_path() . '\Conditions.php');
+        switch ($param->promo) {
+            case '20PESOS':
+                Cart::session($id)->condition($promo20);
+                break;
+            case '30PESOS':
+                Cart::session($id)->condition($promo30);
+                break;
+            case '50PESOS':
+                Cart::session($id)->condition($promo50);
+                break;
+        }
+    }
     public function remove()
     {
         $userId = auth()->user()->id;
@@ -62,7 +98,6 @@ class EmployeeController extends Controller
 
     public function place(Request $request)
     {
-        include(app_path() . '\Conditions.php');
 
         $userId = auth()->user()->id;
 
@@ -74,29 +109,8 @@ class EmployeeController extends Controller
 
             Cart::session($userId)->clearCartConditions();
 
-            switch ($request->type) {
-                case '1':
-                    Cart::session($userId)->condition($tDine);
-                    break;
-                case '2':
-                    Cart::session($userId)->condition($tTake);
-                    break;
-                case '3':
-                    Cart::session($userId)->condition($tDeliv);
-                    break;
-            }
-
-            switch ($request->promo) {
-                case '20PESOS':
-                    Cart::session($userId)->condition($promo20);
-                    break;
-                case '30PESOS':
-                    Cart::session($userId)->condition($promo30);
-                    break;
-                case '50PESOS':
-                    Cart::session($userId)->condition($promo50);
-                    break;
-            }
+            $this->addOrderType($request, $userId);
+            $this->addPromo($request, $userId);
 
             Order::create([
                 'user_id' => request('user'),
@@ -133,44 +147,21 @@ class EmployeeController extends Controller
     {
         $userId = auth()->user()->id;
         $order = Order::find(request('id'));
+
         Cart::session($userId)->clear();
+
         foreach (json_decode($order->cart) as $parsed) {
-            $food = Food::find($parsed->id);
-            Cart::session($userId)->add(array(
-                'id' => $food->id,
-                'name' => $food->name,
-                'price' => $food->amount,
-                'quantity' => $parsed->quantity,
-                'attributes' => array(
-                    'thumbnail' => $food->thumbnail,
-                )
-            ));
+            $this->addtoCart($parsed, $userId);
         }
 
-        include(app_path() . '\Conditions.php');
         Cart::session($userId)->clearCartConditions();
-
         $arr = array_keys((array) json_decode($order->conditions));
-        switch ($arr[0]) {
-            case 'Dine-in':
-                Cart::session($userId)->condition($tDine);
-                break;
-            case 'Take-out':
-                Cart::session($userId)->condition($tTake);
-                break;
-            case 'Delivery':
-                Cart::session($userId)->condition($tDeliv);
-                break;
-        }
 
-        if (count($arr) > 1)
-            if ($arr[1] == '20PESOS') {
-                Cart::session($userId)->condition($promo20);
-            } else if ($arr[1] == '30PESOS') {
-                Cart::session($userId)->condition($promo30);
-            } else if ($arr[1] == '50PESOS') {
-                Cart::session($userId)->condition($promo50);
-            }
+        $this->addOrderType($arr[0], $userId);
+
+        if (count($arr) > 1) {
+            $this->addPromo($arr[1], $userId);
+        }
 
         return redirect('employee/show-edit-order/' . $order->id);
     }
@@ -202,29 +193,8 @@ class EmployeeController extends Controller
                 'promo' => 'nullable|exists:promos,name',
             ]);
 
-            switch ($request->type) {
-                case '1':
-                    Cart::session($userId)->condition($tDine);
-                    break;
-                case '2':
-                    Cart::session($userId)->condition($tTake);
-                    break;
-                case '3':
-                    Cart::session($userId)->condition($tDeliv);
-                    break;
-            }
-
-            switch ($request->promo) {
-                case '20PESOS':
-                    Cart::session($userId)->condition($promo20);
-                    break;
-                case '30PESOS':
-                    Cart::session($userId)->condition($promo30);
-                    break;
-                case '50PESOS':
-                    Cart::session($userId)->condition($promo50);
-                    break;
-            }
+            $this->addOrderType($request, $userId);
+            $this->addPromo($request, $userId);
 
             Order::find(request('id'))->update([
                 'user_id' => request('user'),
@@ -233,6 +203,7 @@ class EmployeeController extends Controller
                 'conditions' => Cart::session($userId)->getConditions(),
                 'amount' => Cart::session($userId)->getSubTotal(),
             ]);
+
             Cart::session($userId)->clear();
             return redirect('employee')->with('success', 'Order Successfully Edited!');
         } elseif (request('submit') != "save" || Cart::session($userId)->getContent()->count() == 0) {
