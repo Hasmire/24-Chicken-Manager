@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Food;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Cart;
 use Darryldecode\Cart\CartCondition;
@@ -132,7 +133,6 @@ class EmployeeController extends Controller
     {
         $userId = auth()->user()->id;
         $order = Order::find(request('id'));
-
         Cart::session($userId)->clear();
         foreach (json_decode($order->cart) as $parsed) {
             $food = Food::find($parsed->id);

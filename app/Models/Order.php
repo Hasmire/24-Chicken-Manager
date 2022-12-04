@@ -18,11 +18,11 @@ class Order extends Model
 
     public function order_type()
     {
-        return $this->hasOne(Order_type::class);
+        return $this->hasMany(Order_type::class);
     }
 
     public function promo()
     {
-        return $this->hasOne(Promo::class);
+        return $this->hasMany(Promo::class);
     }
 }

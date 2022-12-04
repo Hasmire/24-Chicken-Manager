@@ -11,6 +11,6 @@ class Promo extends Model
 
     public function order()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
