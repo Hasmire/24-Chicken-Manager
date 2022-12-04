@@ -8,8 +8,8 @@ This is a sample restaurant management system that aims to keep track of its use
 4. Run the following code to install other dependencies:
 ```
 composer install
-php artisan key:generate
 copy .env.example .env
+php artisan key:generate
 php artisan migrate --seed
 ```
 5. Run the following code to initialize the development server:
