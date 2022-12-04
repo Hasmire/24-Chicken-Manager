@@ -27,7 +27,7 @@
                             <input type="text" name="name" value="{{ old('name') }}" required><br>
                         </div>
                         <div class="form-right">
-                            <label for="amount">Price</label><br>
+                            <label for="amount">Price (₱)</label><br>
                             <input type="number" name="amount" value="{{ old('amount') }}" required><br>
                         </div>
                     </div>

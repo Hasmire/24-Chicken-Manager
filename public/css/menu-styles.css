@@ -59,6 +59,13 @@ body {
     margin-bottom: -10px;
 }
 
+
+/* Search Box */
+::placeholder {
+    text-align: center; 
+    font-size:16px;
+ }
+
 /* ITEMS */
 .cards {
     width: 85%;

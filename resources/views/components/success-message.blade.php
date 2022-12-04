@@ -10,6 +10,7 @@
             border-radius: 10px;
             font-size:12px;
             margin:0 auto;
+            margin-top: 10px;
         }
     </style>
 
