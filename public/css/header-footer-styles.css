@@ -53,6 +53,11 @@ body {
   margin: -45px 0 0 190px;
 }
 
+
+.nav-title>p {
+  padding: 7px;
+}
+
 #logo {
   width: 150px;
 }
@@ -76,6 +81,7 @@ body {
   text-decoration: none;
   font-size: 16px;
 }
+
 .logout-button{
   border:none;
   background-color: white;
@@ -212,3 +218,4 @@ body {
     display: none;
   }
 }
+
