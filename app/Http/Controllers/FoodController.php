@@ -11,13 +11,13 @@ class FoodController extends Controller
     public function menu()
     {
         return view('end-user.menu', [
-            'foods' => Food::all()
+            'foods' => Food::latest()->filter(request(['search']))->get()
         ]);
     }
 
     public function show(Food $food)
     {
-        return view ('end-user.item', [
+        return view('end-user.item', [
             'food' => $food
         ]);
     }

@@ -14,6 +14,16 @@
         </div>
     </div>
 
+    <div class="search">
+        <form method="GET" action="menu">
+            <input type="text" name="search" placeholder="Search for something!" class="search-box" value="{{ request('search') }}">
+            <button type="submit" class="search-button">
+                <i class="fa fa-arrow-circle-o-right fa-2x"></i>
+            </button>
+        </form>
+    </div>
+
+
     <div class="cards">
 
         @if ($foods->count())
