@@ -1,39 +1,48 @@
 # 24 Chicken Manager
+
 This is a sample restaurant management system that aims to keep track of its users, transactions, and staff. This project was made in fulfillment of the requirements at our university.
 
 ## Installation
+
 1. Install PHP and [Composer](https://getcomposer.org/ "Composer")
 2. Clone this repo
 3. Change database configuration in the .env.example file
 4. Run the following code to install other dependencies:
+
 ```
 composer install
 copy .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 ```
+
 5. Run the following code to initialize the development server:
+
 ```
 php artisan serve
 ```
+
 6. Open http://localhost:8000 in your browser
 
 ## For Frontend
+
 Put the html or php files in the /resources/views/ directory.
 
 Also, put the css, js, images, and other public access files in the /public/ directory.
 
-## Blade Template
-Click [here](https://laravel.com/docs/9.x/blade "here") for the documentation of the PHP templating engine to be used.
+## Features
 
-## Learning Laravel
+-   Guest can sign up or login to use the website
+-   Users can view the menu
+-   Users can add items to their cart
+-   Users can update their info
+-   Users can checkout and place an order
+-   Employees can view all orders
+-   Employees can edit and delete an order
+-   Employees can create a new order
+-   Admins can view the menu
+-   Admins can edit and delete a menu item
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Interface
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[Sample Interface](./docs/screenshots.md)
